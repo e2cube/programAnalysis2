@@ -8,6 +8,9 @@ public class Expression {
         this.smth = ss;
     }
 
+    public Expression() {
+    }
+
     public String GetSmth(){
         return this.smth;
     }

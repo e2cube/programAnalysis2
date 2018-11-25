@@ -12,6 +12,7 @@ public class OperationExpression extends Expression {
     }
 
     public Expression getLefthandSide() {
+
         return this.LeftHandSide;
     }
 

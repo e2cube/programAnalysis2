@@ -6,7 +6,7 @@ public class WhileStatement extends Statement {
 
     public WhileStatement(Expression condition, Sequence body) {
         this.Condition = condition;
-        this.body = body;
+        this.Body = body;
     }
 
 }

@@ -7,7 +7,7 @@ public class ReadStatement extends Statement {
         this.Name = name;
     }
 
-    public string getName() {
+    public String getName() {
         return this.Name;
     }
 

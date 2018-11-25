@@ -7,7 +7,7 @@ public class Variable extends Expression {
         this.Name = name;
     }
 
-    public string getName() {
+    public String getName() {
         return this.Name;
     }
 
