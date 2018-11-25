@@ -8,8 +8,14 @@ public class Main {
         a.addIncomingEdge(new Edge(new Label("test2")));
 
         Sequence ab = new Sequence();
-        ab.addToSequence(new IfStatement(new Variable("Test"), new Sequence()));
+        ab.addToSequence(new AssignementStatement(new Expression("TryOne"), "TryOne"));
+        ab.addToSequence(new DeclarationStatement("asd"));
+        ab.addToSequence(new AssignementStatement(new Expression("TryTwo"), "TryTwo"));
         System.out.println(ab.toString());
+
+        OneToOther aaa = new OneToOther();
+        aaa.LetsDoThis(ab);
+        aaa.toString();
 
         System.out.println("Hello, World");
         System.out.println("Goodbye, World");
