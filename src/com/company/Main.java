@@ -13,9 +13,6 @@ public class Main {
         ab.addToSequence(new AssignementStatement(new Expression("TryTwo"), "TryTwo"));
         System.out.println(ab.toString());
 
-        OneToOther aaa = new OneToOther();
-        aaa.LetsDoThis(ab);
-        aaa.toString();
 
         System.out.println("Hello, World");
         System.out.println("Goodbye, World");
