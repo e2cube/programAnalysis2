@@ -1,4 +1,7 @@
 package worklist;
 
-public class ConstantSet {
+import java.util.ArrayList;
+
+public class ConstantSet extends TrashSet {
+    ArrayList<AnalysisDomainElement> elements;
 }

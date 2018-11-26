@@ -1,4 +1,4 @@
 package worklist;
 
-public class AnalysisDomain {
+public class AnalysisDomainElement {
 }

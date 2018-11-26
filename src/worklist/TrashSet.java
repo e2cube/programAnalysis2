@@ -1,4 +1,5 @@
 package worklist;
 
-public class TrashSet {
+public abstract class TrashSet {
+
 }
