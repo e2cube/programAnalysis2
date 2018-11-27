@@ -17,6 +17,7 @@ public class OneToOther {
         counter = 0;
     }
 
+
     public void TreeToGraph(Sequence ss){
         ArrayList<Statement> code = ss.GetStatements();
         for(int a = 0; a < code.size(); a++){
@@ -176,6 +177,7 @@ public class OneToOther {
         }
         if(statement instanceof WhileStatement){
             Edge edge = new Edge(new Label(((WhileStatement) statement).getCondition().GetSmth()));
+            Edge negEdge = new Edge(new Label("!("+((WhileStatement) statement).getCondition().GetSmth()+")"));
             Node parentWhileNode = null;
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
@@ -200,8 +202,14 @@ public class OneToOther {
             lastEdge.AddEndNode(parentWhileNode);
             parentWhileNode.addIncomingEdge(lastEdge);
             graph.Nodes.remove(previousNodeHelper);
-            previousNodeHelper = parentWhileNode;
             counter--;
+            previousNodeHelper = parentWhileNode;
+            //second branch of while that i forgot
+            Node nn = createNode();
+            previousNodeHelper.addOutgoingEdge(negEdge);
+            nn.addIncomingEdge(negEdge);
+            negEdge.AddStartNode(previousNodeHelper);
+            negEdge.AddEndNode(nn);
         }
     }
 
