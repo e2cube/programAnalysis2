@@ -7,4 +7,19 @@ public class Operator extends TrashSet {
 
     private TrashSet rightHandSide;
 
+    public TrashSet getLeftHandSide() {
+        return leftHandSide;
+    }
+
+    public void setLeftHandSide(TrashSet leftHandSide) {
+        this.leftHandSide = leftHandSide;
+    }
+
+    public TrashSet getRightHandSide() {
+        return rightHandSide;
+    }
+
+    public void setRightHandSide(TrashSet rightHandSide) {
+        this.rightHandSide = rightHandSide;
+    }
 }
