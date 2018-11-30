@@ -1,22 +1,40 @@
 package worklist;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import org.jetbrains.annotations.NotNull;
 import worklist.Operators.Operator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Worklist {
 
-    private ArrayList<Constraint> constraints;
+    private LinkedList<Constraint> constraints;
     private HashMap<Integer, Constraint> mapConstraints = new HashMap<>();
 
-    public Worklist(ArrayList<Constraint> constraints){
+    public Worklist(LinkedList<Constraint> constraints){
         this.constraints = constraints;
 
         for (Constraint c:constraints) {
             mapConstraints.put(c.getId(),c);
         }
+    }
+
+    public LinkedList<Constraint> getConstraints() {
+        return constraints;
+    }
+
+    public void setConstraints(LinkedList<Constraint> constraints) {
+        this.constraints = constraints;
+    }
+
+    public HashMap<Integer, Constraint> getMapConstraints() {
+        return mapConstraints;
+    }
+
+    public void setMapConstraints(HashMap<Integer, Constraint> mapConstraints) {
+        this.mapConstraints = mapConstraints;
     }
 
     public HashMap<String, ArrayList<VariableSet>> CreateInfluence() {
