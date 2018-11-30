@@ -1,7 +1,5 @@
 package worklist;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 import worklist.Operators.Operator;
 
 import java.util.ArrayList;
@@ -24,32 +22,30 @@ public class Worklist {
     public HashMap<Integer, ArrayList<Integer>> CreateInfluence() {
         HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
         ArrayList<Constraint>  notSolvedConstraints = new ArrayList<>();
+
         for (Constraint constraint : constraints) {
             ArrayList<VariableSet> vs_contained = DetectVariableSets(constraint.getRightHandSide());
             for(VariableSet vs : vs_contained)
             {
-
-            }
-
-
-
-            /*
-
-
-            if (!vs_contained.isEmpty()) {
-                for (VariableSet vs : vs_contained) {
-                    if (influences.get(vs.getName()) == null) {
-                        ArrayList<VariableSet> tmpSets = new ArrayList<>();
-                        tmpSets.add(constraint.getLeftHandSide());
-                        influences.put(vs.getName(), tmpSets);
-                    } else if (!influences.get(vs.getName()).contains(constraint.getLeftHandSide())) {
-                        ArrayList<VariableSet> tmpSets = influences.get(vs.getName());
-                        tmpSets.add(constraint.getLeftHandSide());
-                        influences.remove(vs.getName());
-                        influences.put(vs.getName(), tmpSets);
+                for (Constraint tmp_constraint : constraints)
+                {
+                    if (tmp_constraint.getLeftHandSide().getName() == vs.getName())
+                    {
+                        ArrayList<Integer> tmp_list = influences.get(tmp_constraint.getId());
+                        if(tmp_list == null)
+                        {
+                            tmp_list.add(constraint.getId());
+                            influences.put(tmp_constraint.getId(), tmp_list);
+                        }
+                        else
+                        {
+                            tmp_list.add(constraint.getId());
+                            influences.remove(tmp_constraint.getId());
+                            influences.put(tmp_constraint.getId(),tmp_list);
+                        }
                     }
                 }
-            }*/
+            }
 
         }
 
