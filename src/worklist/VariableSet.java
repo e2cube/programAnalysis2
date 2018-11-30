@@ -1,5 +1,7 @@
 package worklist;
 
+import com.company.Variable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,5 +19,13 @@ public class VariableSet extends TrashSet {
     @Override
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
         return A.get(name);
+    }
+
+    public VariableSet(String name) {
+        this.name = name;
+    }
+
+    public VariableSet(){
+
     }
 }

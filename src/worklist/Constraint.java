@@ -19,6 +19,16 @@ public class Constraint {
         this.overEstimation = overEstimation;
     }
 
+    public Constraint(int id, VariableSet leftHandSide, TrashSet rightHandSide, boolean overEstimation) {
+        this.id = id;
+        this.leftHandSide = leftHandSide;
+        this.rightHandSide = rightHandSide;
+        this.overEstimation = overEstimation;
+    }
+
+    public Constraint(){
+
+    }
 
     public int getId() {
         return id;
