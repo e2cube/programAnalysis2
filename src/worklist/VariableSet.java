@@ -1,7 +1,7 @@
 package worklist;
 
 public class VariableSet extends TrashSet {
-    String name;
+    private String name;
 
     public String getName() {
         return name;

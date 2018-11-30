@@ -1,42 +1,40 @@
 package worklist;
 
-
-import com.company.Variable;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import worklist.Operators.Operator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Worklist {
 
+    private ArrayList<Constraint> constraints;
+    private HashMap<Integer, Constraint> mapConstraints = new HashMap<>();
 
-    public HashMap<String, ArrayList<AnalysisDomainElement>> fifo() {
-        HashMap<String, ArrayList<AnalysisDomainElement>> A;
-        ArrayList<Constraint> worklist = new ArrayList<>();
-        HashMap<String, ArrayList<VariableSet>> infl = new HashMap<>();
+    public Worklist(ArrayList<Constraint> constraints){
+        this.constraints = constraints;
 
-        return null;
+        for (Constraint c:constraints) {
+            mapConstraints.put(c.getId(),c);
+        }
     }
 
-    public HashMap<String, ArrayList<VariableSet>> CreateInfluence(ArrayList<Constraint> givenConstraints) {
+    public HashMap<String, ArrayList<VariableSet>> CreateInfluence() {
         HashMap<String, ArrayList<VariableSet>> influences = new HashMap<>();
-
-
-        for (Constraint constraint : givenConstraints) {
+        for (Constraint constraint : constraints) {
             ArrayList<VariableSet> vs_contained = DetectVariableSets(constraint.getRightHandSide());
 
             if (!vs_contained.isEmpty()) {
                 for (VariableSet vs : vs_contained) {
-                    if (influences.get(vs.name) == null) {
+                    if (influences.get(vs.getName()) == null) {
                         ArrayList<VariableSet> tmpSets = new ArrayList<>();
                         tmpSets.add(constraint.getLeftHandSide());
-                        influences.put(vs.name, tmpSets);
-                    } else if (!influences.get(vs.name).contains(constraint.getLeftHandSide())) {
-                        ArrayList<VariableSet> tmpSets = influences.get(vs.name);
+                        influences.put(vs.getName(), tmpSets);
+                    } else if (!influences.get(vs.getName()).contains(constraint.getLeftHandSide())) {
+                        ArrayList<VariableSet> tmpSets = influences.get(vs.getName());
                         tmpSets.add(constraint.getLeftHandSide());
-                        influences.remove(vs.name);
-                        influences.put(vs.name, tmpSets);
+                        influences.remove(vs.getName());
+                        influences.put(vs.getName(), tmpSets);
                     }
                 }
             }

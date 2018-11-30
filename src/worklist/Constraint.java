@@ -3,6 +3,7 @@ package worklist;
 public class Constraint {
 
 
+    private int id;
 
     private VariableSet leftHandSide;
 
@@ -19,6 +20,13 @@ public class Constraint {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public VariableSet getLeftHandSide() {
         return leftHandSide;
