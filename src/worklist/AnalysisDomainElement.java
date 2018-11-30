@@ -1,4 +1,7 @@
 package worklist;
 
-public class AnalysisDomainElement {
+public abstract class AnalysisDomainElement {
+
+    public abstract boolean Equals(AnalysisDomainElement otherElement);
+
 }

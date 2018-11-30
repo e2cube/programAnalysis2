@@ -1,11 +1,15 @@
 package worklist.Operators;
 
+import worklist.AnalysisDomainElement;
 import worklist.TrashSet;
 
-public class Operator extends TrashSet {
-    private TrashSet leftHandSide;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    private TrashSet rightHandSide;
+public class Operator extends TrashSet {
+    protected TrashSet leftHandSide;
+
+    protected TrashSet rightHandSide;
 
     public TrashSet getLeftHandSide() {
         return leftHandSide;
@@ -22,4 +26,11 @@ public class Operator extends TrashSet {
     public void setRightHandSide(TrashSet rightHandSide) {
         this.rightHandSide = rightHandSide;
     }
+
+
+    @Override
+    public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
+        return null;
+    }
+
 }
