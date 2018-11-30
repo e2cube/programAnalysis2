@@ -1,7 +1,7 @@
 package worklist;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-import org.jetbrains.annotations.NotNull;
+
 import worklist.Operators.Operator;
 
 import java.util.ArrayList;
@@ -21,26 +21,20 @@ public class Worklist {
         }
     }
 
-    public LinkedList<Constraint> getConstraints() {
-        return constraints;
-    }
-
-    public void setConstraints(LinkedList<Constraint> constraints) {
-        this.constraints = constraints;
-    }
-
-    public HashMap<Integer, Constraint> getMapConstraints() {
-        return mapConstraints;
-    }
-
-    public void setMapConstraints(HashMap<Integer, Constraint> mapConstraints) {
-        this.mapConstraints = mapConstraints;
-    }
-
-    public HashMap<String, ArrayList<VariableSet>> CreateInfluence() {
-        HashMap<String, ArrayList<VariableSet>> influences = new HashMap<>();
+    public HashMap<Integer, ArrayList<Integer>> CreateInfluence() {
+        HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
+        ArrayList<Constraint>  notSolvedConstraints = new ArrayList<>();
         for (Constraint constraint : constraints) {
             ArrayList<VariableSet> vs_contained = DetectVariableSets(constraint.getRightHandSide());
+            for(VariableSet vs : vs_contained)
+            {
+
+            }
+
+
+
+            /*
+
 
             if (!vs_contained.isEmpty()) {
                 for (VariableSet vs : vs_contained) {
@@ -55,7 +49,7 @@ public class Worklist {
                         influences.put(vs.getName(), tmpSets);
                     }
                 }
-            }
+            }*/
 
         }
 
@@ -90,4 +84,24 @@ public class Worklist {
 
         return detected;
     }
+
+
+    public LinkedList<Constraint> getConstraints() {
+        return constraints;
+    }
+
+    public void setConstraints(LinkedList<Constraint> constraints) {
+        this.constraints = constraints;
+    }
+
+    public HashMap<Integer, Constraint> getMapConstraints() {
+        return mapConstraints;
+    }
+
+    public void setMapConstraints(HashMap<Integer, Constraint> mapConstraints) {
+        this.mapConstraints = mapConstraints;
+    }
+
+
+
 }

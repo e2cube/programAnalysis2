@@ -18,7 +18,7 @@ public class WorklistAlgorithm {
 
         Worklist worklist = new Worklist(givenConstraints);
 
-        HashMap<String, ArrayList<VariableSet>> infl = worklist.CreateInfluence();
+        //HashMap<String, ArrayList<VariableSet>> infl = worklist.CreateInfluence();
         HashMap<String, ArrayList<AnalysisDomainElement>> A;
 
         Constraint c = givenConstraints.getFirst();
