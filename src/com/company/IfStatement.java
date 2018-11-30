@@ -9,4 +9,10 @@ public class IfStatement extends Statement {
         this.body = body;
     }
 
+    public Expression getCondition() {
+        return Condition;
+    }
+    public Sequence getBody(){
+        return body;
+    }
 }
