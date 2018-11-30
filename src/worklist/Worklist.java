@@ -19,10 +19,21 @@ public class Worklist {
         }
     }
 
-    public HashMap<String, ArrayList<VariableSet>> CreateInfluence() {
-        HashMap<String, ArrayList<VariableSet>> influences = new HashMap<>();
+    public HashMap<Integer, ArrayList<Integer>> CreateInfluence() {
+        HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
+        ArrayList<Constraint>  notSolvedConstraints = new ArrayList<>();
+
         for (Constraint constraint : constraints) {
             ArrayList<VariableSet> vs_contained = DetectVariableSets(constraint.getRightHandSide());
+            for(VariableSet vs : vs_contained)
+            {
+
+            }
+
+
+
+            /*
+
 
             if (!vs_contained.isEmpty()) {
                 for (VariableSet vs : vs_contained) {
@@ -37,7 +48,7 @@ public class Worklist {
                         influences.put(vs.getName(), tmpSets);
                     }
                 }
-            }
+            }*/
 
         }
 
