@@ -1,17 +1,19 @@
 package worklist;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import worklist.Operators.Operator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Worklist {
 
-    private ArrayList<Constraint> constraints;
+    private LinkedList<Constraint> constraints;
     private HashMap<Integer, Constraint> mapConstraints = new HashMap<>();
 
-    public Worklist(ArrayList<Constraint> constraints){
+    public Worklist(LinkedList<Constraint> constraints){
         this.constraints = constraints;
 
         for (Constraint c:constraints) {
@@ -22,7 +24,6 @@ public class Worklist {
     public HashMap<Integer, ArrayList<Integer>> CreateInfluence() {
         HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
         ArrayList<Constraint>  notSolvedConstraints = new ArrayList<>();
-
         for (Constraint constraint : constraints) {
             ArrayList<VariableSet> vs_contained = DetectVariableSets(constraint.getRightHandSide());
             for(VariableSet vs : vs_contained)
@@ -83,4 +84,24 @@ public class Worklist {
 
         return detected;
     }
+
+
+    public LinkedList<Constraint> getConstraints() {
+        return constraints;
+    }
+
+    public void setConstraints(LinkedList<Constraint> constraints) {
+        this.constraints = constraints;
+    }
+
+    public HashMap<Integer, Constraint> getMapConstraints() {
+        return mapConstraints;
+    }
+
+    public void setMapConstraints(HashMap<Integer, Constraint> mapConstraints) {
+        this.mapConstraints = mapConstraints;
+    }
+
+
+
 }
