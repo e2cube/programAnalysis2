@@ -127,7 +127,7 @@ public class Main {
     public static void  test_CreateInfluence()
     {
         //TESTING CREATE INFLUENCES
-        System.out.println("TEST DetectVariableSets");
+        System.out.println("TEST CreateInfluence");
 
         ArrayList<Constraint> given_constraints = new ArrayList<>();
 
@@ -145,7 +145,18 @@ public class Main {
         //x0 minus index ?0, 01, 62 union index01 is x1
         DSElement index01 = new DSElement("(0,1,index)");
         DSElement index62 = new DSElement("(0,1,index)");
+        ArrayList<AnalysisDomainElement> elements_constantset2 = new ArrayList<>();
+        elements_constantset2.add(indexI0);
+        elements_constantset2.add(index01);
+        elements_constantset2.add(index62);
+        ConstantSet constant2 = new ConstantSet(elements_constantset2);
 
+        ArrayList<AnalysisDomainElement> elements_constantset3 = new ArrayList<>();
+        elements_constantset3.add(index01);
+
+        VariableSet x1 = new VariableSet("x1");
+
+        
 
 
 
