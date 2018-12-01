@@ -75,7 +75,7 @@ public class Main {
             System.out.println(((DSElement) tmp_a).getName());
         }
 
-        test_DetectVariableSets();
+        //test_DetectVariableSets();
 
         test_CreateInfluence();
         System.out.println("END");
@@ -163,19 +163,34 @@ public class Main {
         Constraint constraint2 = new Constraint(2, x1, union1, true);
 
         //Put all constraints in given_constraints
-        given_constraints.add(constraint1);
         given_constraints.add(constraint2);
+        given_constraints.add(constraint1);
 
         //CREATE WORKLIST
         Worklist worklist = new Worklist(given_constraints);
 
         HashMap<Integer, ArrayList<Integer>> influences = worklist.CreateInfluence();
 
-        System.out.println(influences);
+        System.out.println("Influences : "+influences);
+
+        int root = worklist.RootConstraint(influences);
+
+        System.out.println("root : "+ root);
+
+        System.out.println("Worklist before reverse post order");
+        for (Constraint c : worklist.getConstraints())
+        {
+            System.out.println(c.getId());
+        }
+
+        worklist.ReversePostOrder(influences);
 
 
-
-
+        System.out.println("Worklist after reverse post order");
+        for (Constraint c : worklist.getConstraints())
+        {
+            System.out.println(c.getId());
+        }
 
 
     }
