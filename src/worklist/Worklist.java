@@ -2,14 +2,15 @@ package worklist;
 
 import worklist.Operators.Operator;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Worklist {
 
-    private LinkedList<Constraint> constraints;
+    private ArrayList<Constraint> constraints;
     private HashMap<Integer, Constraint> mapConstraints = new HashMap<>();
 
-    public Worklist(LinkedList<Constraint> constraints){
+    public Worklist(ArrayList<Constraint> constraints){
         this.constraints = constraints;
 
         for (Constraint c:constraints) {
@@ -146,11 +147,11 @@ public class Worklist {
     }
 
 
-    public LinkedList<Constraint> getConstraints() {
+    public ArrayList<Constraint> getConstraints() {
         return constraints;
     }
 
-    public void setConstraints(LinkedList<Constraint> constraints) {
+    public void setConstraints(ArrayList<Constraint> constraints) {
         this.constraints = constraints;
     }
 
