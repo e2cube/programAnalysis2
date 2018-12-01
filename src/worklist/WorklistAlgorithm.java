@@ -33,7 +33,7 @@ public class WorklistAlgorithm {
             ArrayList<AnalysisDomainElement> result = c.getRightHandSide().evaluate(A);
 
             //Union the two arraylists if it already has a list.
-            Boolean isChanged = false;
+            boolean isChanged = false;
             if (currentList != null){
                 for(AnalysisDomainElement el : result){
                     if (!currentList.contains(el)){

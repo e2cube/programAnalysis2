@@ -118,48 +118,56 @@ public class Worklist {
         ArrayList<Constraint> visited_constraints = new ArrayList<>();
 
         Constraint constraint = mapConstraints.get(RootConstraint(influences));
-        stack.push(constraint);
-
-
-        while (!stack.empty())
+        if(constraint!=null)
         {
-            constraint = stack.peek();
-            if(!visited_constraints.contains(constraint))
-            {
-                visited_constraints.add(constraint);
-            }
+            stack.push(constraint);
 
-            ArrayList<Integer> influenced_constraints = influences.get(constraint.getId());
-            if(influenced_constraints==null)
+
+            while (!stack.empty())
             {
-                constraint = stack.pop();
-                visited_constraints.remove(constraint);
-                ordered_list.add(0, constraint);
-            }
-            else
-            {
-                for (int i=0; i<influenced_constraints.size();i++)
+                constraint = stack.peek();
+                if(!visited_constraints.contains(constraint))
                 {
-                    Constraint tmp_constraint = mapConstraints.get(influenced_constraints.get(i));
-                    if (!visited_constraints.contains(tmp_constraint) && !ordered_list.contains(tmp_constraint))
+                    visited_constraints.add(constraint);
+                }
+
+                ArrayList<Integer> influenced_constraints = influences.get(constraint.getId());
+                if(influenced_constraints==null)
+                {
+                    constraint = stack.pop();
+                    visited_constraints.remove(constraint);
+                    ordered_list.add(0, constraint);
+                }
+                else
+                {
+                    for (int i=0; i<influenced_constraints.size();i++)
                     {
-                        stack.push(tmp_constraint);
-                        break;
-                    }
-                    else
-                    {
-                        stack.pop();
-                        visited_constraints.remove(constraint);
-                        ordered_list.add(0,constraint);
+                        Constraint tmp_constraint = mapConstraints.get(influenced_constraints.get(i));
+                        if (!visited_constraints.contains(tmp_constraint) && !ordered_list.contains(tmp_constraint))
+                        {
+                            stack.push(tmp_constraint);
+                            break;
+                        }
+                        else
+                        {
+                            stack.pop();
+                            visited_constraints.remove(constraint);
+                            ordered_list.add(0,constraint);
+                        }
                     }
                 }
+
             }
 
+            //Replace the constraints worklist by the ordered worklist
+            constraints.clear();
+            constraints.addAll(ordered_list);
+        }
+        else
+        {
+            System.out.println("There is no root to the constraints tree");
         }
 
-        //Replace the constraints worklist by the ordered worklist
-        constraints.clear();
-        constraints.addAll(ordered_list);
 
     }
 
