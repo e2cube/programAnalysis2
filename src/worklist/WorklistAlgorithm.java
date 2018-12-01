@@ -19,7 +19,6 @@ public class WorklistAlgorithm {
         //Initialize objects
         Worklist worklist = new Worklist(givenConstraints);
         HashMap<Integer, ArrayList<Integer>> infl = worklist.CreateInfluence();
-        HashMap<String, ArrayList<AnalysisDomainElement>> A = new HashMap<>();
 
 
         //While the worklist isn't empty.
@@ -55,6 +54,8 @@ public class WorklistAlgorithm {
                 }
             }
         }
+
+        System.out.println(A);
         return null;
     }
 }
