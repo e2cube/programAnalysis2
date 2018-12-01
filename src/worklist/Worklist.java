@@ -11,7 +11,7 @@ public class Worklist {
     private HashMap<Integer, Constraint> mapConstraints = new HashMap<>();
 
     public Worklist(ArrayList<Constraint> constraints){
-        this.constraints = constraints;
+        this.constraints = new ArrayList<>(constraints);
 
         for (Constraint c:constraints) {
             mapConstraints.put(c.getId(),c);
@@ -109,7 +109,7 @@ public class Worklist {
     }
 
 
-    public void ReversePostOrder(HashMap<Integer, ArrayList<Integer>> influences)
+    public ArrayList<Constraint> ReversePostOrder(HashMap<Integer, ArrayList<Integer>> influences)
     {
         ArrayList<Constraint> ordered_list = new ArrayList<>();
 
@@ -118,10 +118,10 @@ public class Worklist {
         ArrayList<Constraint> visited_constraints = new ArrayList<>();
 
         Constraint constraint = mapConstraints.get(RootConstraint(influences));
-        if(constraint!=null)
+
+        if(constraint!=null) //if there is a root
         {
             stack.push(constraint);
-
 
             while (!stack.empty())
             {
@@ -132,6 +132,8 @@ public class Worklist {
                 }
 
                 ArrayList<Integer> influenced_constraints = influences.get(constraint.getId());
+
+
                 if(influenced_constraints==null)
                 {
                     constraint = stack.pop();
@@ -140,34 +142,36 @@ public class Worklist {
                 }
                 else
                 {
+                    boolean to_pop = true;
                     for (int i=0; i<influenced_constraints.size();i++)
                     {
+
                         Constraint tmp_constraint = mapConstraints.get(influenced_constraints.get(i));
+
                         if (!visited_constraints.contains(tmp_constraint) && !ordered_list.contains(tmp_constraint))
                         {
                             stack.push(tmp_constraint);
+                            to_pop = false;
                             break;
                         }
-                        else
-                        {
-                            stack.pop();
-                            visited_constraints.remove(constraint);
-                            ordered_list.add(0,constraint);
-                        }
+
+                    }
+                    if (to_pop)
+                    {
+                        stack.pop();
+                        visited_constraints.remove(constraint);
+                        ordered_list.add(0,constraint);
                     }
                 }
 
             }
-
-            //Replace the constraints worklist by the ordered worklist
-            constraints.clear();
-            constraints.addAll(ordered_list);
         }
         else
         {
             System.out.println("There is no root to the constraints tree");
         }
 
+        return ordered_list;
 
     }
 
