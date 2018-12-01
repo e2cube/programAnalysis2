@@ -32,6 +32,7 @@ public class Worklist {
                         ArrayList<Integer> tmp_list = influences.get(tmp_constraint.getId());
                         if(tmp_list == null)
                         {
+                            tmp_list = new ArrayList<>();
                             tmp_list.add(constraint.getId());
                             influences.put(tmp_constraint.getId(), tmp_list);
                         }

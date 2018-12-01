@@ -1,5 +1,6 @@
 package com.company;
 
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import worklist.*;
@@ -75,6 +76,9 @@ public class Main {
         }
 
         test_DetectVariableSets();
+
+        test_CreateInfluence();
+        System.out.println("END");
 
 
     }
@@ -158,6 +162,16 @@ public class Main {
 
         Constraint constraint2 = new Constraint(2, x1, union1, true);
 
+        //Put all constraints in given_constraints
+        given_constraints.add(constraint1);
+        given_constraints.add(constraint2);
+
+        //CREATE WORKLIST
+        Worklist worklist = new Worklist(given_constraints);
+
+        HashMap<Integer, ArrayList<Integer>> influences = worklist.CreateInfluence();
+
+        System.out.println(influences);
 
 
 
