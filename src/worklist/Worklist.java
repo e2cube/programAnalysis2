@@ -51,7 +51,7 @@ public class Worklist {
     }
 
     //Detects all the variable sets contained in a trash set (even the nested ones). Recursive.
-    public ArrayList<VariableSet> DetectVariableSets(TrashSet trashSet) {
+    public static ArrayList<VariableSet> DetectVariableSets(TrashSet trashSet) {
         ArrayList<VariableSet> detected = new ArrayList<>();
 
         if (trashSet instanceof ConstantSet) {
