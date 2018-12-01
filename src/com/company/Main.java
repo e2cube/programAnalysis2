@@ -75,15 +75,10 @@ public class Main {
             System.out.println(((DSElement) tmp_a).getName());
         }
 
-<<<<<<< HEAD
         test_WorkList();
         test_DetectVariableSets();
-=======
-        //test_DetectVariableSets();
-
         test_CreateInfluence();
         System.out.println("END");
->>>>>>> f8e93b3bffc9c2e9984621f7526d6282e04258dc
 
 
     }
@@ -107,7 +102,7 @@ public class Main {
 
         //x0 minus index ?0, 01, 62 union index01 is x1
         DSElement index01 = new DSElement("(0,1,index)");
-        DSElement index62 = new DSElement("(0,1,index)");
+        DSElement index62 = new DSElement("(6,2,index)");
         ArrayList<AnalysisDomainElement> elements_constantset2 = new ArrayList<>();
         elements_constantset2.add(indexI0);
         elements_constantset2.add(index01);

@@ -18,7 +18,14 @@ public class VariableSet extends TrashSet {
 
     @Override
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
-        return A.get(name);
+
+        if (A.get(name) == null) {
+            return new ArrayList<>();
+        }
+        else {
+            return A.get(name);
+        }
+
     }
 
     public VariableSet(String name) {
