@@ -4,7 +4,7 @@ import worklist.AnalysisDomainElement;
 
 public class DSElement extends AnalysisDomainElement {
 
-    String name;
+    private String name;
 
     public String getName() {
         return name;

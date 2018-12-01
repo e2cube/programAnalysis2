@@ -1,6 +1,7 @@
 package worklist.Operators;
 
 import worklist.AnalysisDomainElement;
+import worklist.TrashSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,9 @@ public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<Analy
     return result;
 }
 
-    public Union() {
+    public Union(TrashSet lhs, TrashSet rhs) {
+    this.setLeftHandSide(lhs);
+    this.setRightHandSide(rhs);
     }
 }
 

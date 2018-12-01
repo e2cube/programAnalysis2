@@ -1,12 +1,11 @@
 package com.company;
 
 import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import worklist.*;
 import worklist.AnalysisDomain.DSElement;
-import worklist.AnalysisDomainElement;
-import worklist.ConstantSet;
-import worklist.Constraint;
+import worklist.Operators.Difference;
 import worklist.Operators.Union;
-import worklist.VariableSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,16 +51,14 @@ public class Main {
         DSElement ad2 = new DSElement("{0,+}");
 
         ArrayList<AnalysisDomainElement> temp2 = new ArrayList<>();
-        temp2.add(ade);
-        temp2.add(ade2);
+        temp2.add(ad);
+        temp2.add(ad2);
 
         ConstantSet cs2 = new ConstantSet(temp2);
 
         ConstantSet cs = new ConstantSet(temp);
 
-        Union un = new Union();
-        un.setLeftHandSide(cs);
-        un.setRightHandSide(cs2);
+        Union un = new Union(cs,cs2);
 
         VariableSet vs = new VariableSet("test");
         Constraint c1 = new Constraint(1,vs, un, true);
@@ -69,8 +66,104 @@ public class Main {
         HashMap<String,ArrayList<AnalysisDomainElement>> t = new HashMap<>();
 
         t.put("test", temp2);
-       ArrayList<AnalysisDomainElement> te = c1.getRightHandSide().evaluate(t);
 
-        System.out.println(te);
+        ArrayList<AnalysisDomainElement> te = c1.getRightHandSide().evaluate(t);
+
+        for(AnalysisDomainElement tmp_a : te)
+        {
+            System.out.println(((DSElement) tmp_a).getName());
+        }
+
+        test_DetectVariableSets();
+
+
     }
+
+    public static void test_DetectVariableSets()
+    {
+        System.out.println("TEST DetectVariableSets");
+        //Testing DetectVariableSets(trashset)
+        //Creating a first constant set for the operator
+        DSElement element1 = new DSElement("{+,-,0}");
+        DSElement element2 = new DSElement("{0,+,-}");
+
+        ArrayList<AnalysisDomainElement> lhs_list_elements = new ArrayList<>();
+        lhs_list_elements.add(element1);
+        lhs_list_elements.add(element2);
+        ConstantSet constant1 = new ConstantSet(lhs_list_elements);
+
+        //Creating a second constant set for the operator
+        DSElement element3 = new DSElement("{+,0}");
+        DSElement element4 = new DSElement("{0,+}");
+
+        ArrayList<AnalysisDomainElement> rhs_list_elements = new ArrayList<>();
+        rhs_list_elements.add(element3);
+        rhs_list_elements.add(element4);
+        ConstantSet constant2 = new ConstantSet(rhs_list_elements);
+
+        //Creating a first union
+        Union union1 = new Union(constant1,constant2);
+
+        //Creating a variable set
+        VariableSet variableSet = new VariableSet("variable1");
+
+        //Final union
+        Union union2 = new Union(variableSet,union1);
+
+        //Detect the variable sets in this union
+        ArrayList<VariableSet> detected = Worklist.DetectVariableSets(union2);
+
+        for (VariableSet tmp_variable : detected)
+        {
+            System.out.println(tmp_variable.getName());
+        }
+
+    }
+
+    public static void  test_CreateInfluence()
+    {
+        //TESTING CREATE INFLUENCES
+        System.out.println("TEST CreateInfluence");
+
+        ArrayList<Constraint> given_constraints = new ArrayList<>();
+
+        //index ? 0, array ?, 0 is x0
+        DSElement indexI0 = new DSElement("(?,0,index)");
+        DSElement arrayI0 = new DSElement("(?,0,array)");
+        ArrayList<AnalysisDomainElement> elements_constantset1 = new ArrayList<>();
+        elements_constantset1.add(indexI0);
+        elements_constantset1.add(arrayI0);
+        ConstantSet constant1 = new ConstantSet(elements_constantset1);
+        VariableSet x0 = new VariableSet("x0");
+
+        Constraint constraint1 = new Constraint(1, x0, constant1, true);
+
+        //x0 minus index ?0, 01, 62 union index01 is x1
+        DSElement index01 = new DSElement("(0,1,index)");
+        DSElement index62 = new DSElement("(0,1,index)");
+        ArrayList<AnalysisDomainElement> elements_constantset2 = new ArrayList<>();
+        elements_constantset2.add(indexI0);
+        elements_constantset2.add(index01);
+        elements_constantset2.add(index62);
+        ConstantSet constant2 = new ConstantSet(elements_constantset2);
+
+        ArrayList<AnalysisDomainElement> elements_constantset3 = new ArrayList<>();
+        elements_constantset3.add(index01);
+        ConstantSet constant3 = new ConstantSet(elements_constantset3);
+
+        Difference difference1 = new Difference(x0, constant2);
+        Union union1 = new Union(difference1, constant3);
+
+        VariableSet x1 = new VariableSet("x1");
+
+        Constraint constraint2 = new Constraint(2, x1, union1, true);
+
+
+
+
+
+
+
+    }
+
 }
