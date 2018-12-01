@@ -1,8 +1,10 @@
 package com.company;
 
 import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import worklist.*;
 import worklist.AnalysisDomain.DSElement;
+import worklist.Operators.Difference;
 import worklist.Operators.Union;
 
 import java.util.ArrayList;
@@ -56,9 +58,7 @@ public class Main {
 
         ConstantSet cs = new ConstantSet(temp);
 
-        Union un = new Union();
-        un.setLeftHandSide(cs);
-        un.setRightHandSide(cs2);
+        Union un = new Union(cs,cs2);
 
         VariableSet vs = new VariableSet("test");
         Constraint c1 = new Constraint(1,vs, un, true);
@@ -102,17 +102,13 @@ public class Main {
         ConstantSet constant2 = new ConstantSet(rhs_list_elements);
 
         //Creating a first union
-        Union union1 = new Union();
-        union1.setLeftHandSide(constant1);
-        union1.setRightHandSide(constant2);
+        Union union1 = new Union(constant1,constant2);
 
         //Creating a variable set
         VariableSet variableSet = new VariableSet("variable1");
 
         //Final union
-        Union union2 = new Union();
-        union2.setLeftHandSide(variableSet);
-        union2.setRightHandSide(union1);
+        Union union2 = new Union(variableSet,union1);
 
         //Detect the variable sets in this union
         ArrayList<VariableSet> detected = Worklist.DetectVariableSets(union2);
@@ -153,10 +149,16 @@ public class Main {
 
         ArrayList<AnalysisDomainElement> elements_constantset3 = new ArrayList<>();
         elements_constantset3.add(index01);
+        ConstantSet constant3 = new ConstantSet(elements_constantset3);
+
+        Difference difference1 = new Difference(x0, constant2);
+        Union union1 = new Union(difference1, constant3);
 
         VariableSet x1 = new VariableSet("x1");
 
-        
+        Constraint constraint2 = new Constraint(2, x1, union1, true);
+
+
 
 
 
