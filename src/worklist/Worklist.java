@@ -32,6 +32,7 @@ public class Worklist {
                         ArrayList<Integer> tmp_list = influences.get(tmp_constraint.getId());
                         if(tmp_list == null)
                         {
+                            tmp_list = new ArrayList<>();
                             tmp_list.add(constraint.getId());
                             influences.put(tmp_constraint.getId(), tmp_list);
                         }
@@ -101,6 +102,7 @@ public class Worklist {
             {
                 return constraint.getId();
             }
+            influenced=false;
         }
 
         return max_id_constraint+1; //So it is a constraint id that does not exist
@@ -109,7 +111,7 @@ public class Worklist {
 
     public void ReversePostOrder(HashMap<Integer, ArrayList<Integer>> influences)
     {
-        LinkedList<Constraint> ordered_list = new LinkedList<>();
+        ArrayList<Constraint> ordered_list = new ArrayList<>();
 
 
         Stack <Constraint> stack = new Stack<>();
@@ -117,27 +119,42 @@ public class Worklist {
 
         Constraint constraint = mapConstraints.get(RootConstraint(influences));
         stack.push(constraint);
-        visited_constraints.add(constraint);
+
 
         while (!stack.empty())
         {
             constraint = stack.peek();
-            ArrayList<Integer> influenced_constraints = influences.get(constraint.getId());
-            for (int i=0; i<influenced_constraints.size();i++)
+            if(!visited_constraints.contains(constraint))
             {
-                Constraint tmp_constraint = mapConstraints.get(influenced_constraints.get(i));
-                if (!visited_constraints.contains(tmp_constraint))
+                visited_constraints.add(constraint);
+            }
+
+            ArrayList<Integer> influenced_constraints = influences.get(constraint.getId());
+            if(influenced_constraints==null)
+            {
+                constraint = stack.pop();
+                visited_constraints.remove(constraint);
+                ordered_list.add(0, constraint);
+            }
+            else
+            {
+                for (int i=0; i<influenced_constraints.size();i++)
                 {
-                    stack.push(tmp_constraint);
-                    break;
-                }
-                else
-                {
-                    stack.pop();
-                    visited_constraints.remove(constraint);
-                    ordered_list.addFirst(constraint);
+                    Constraint tmp_constraint = mapConstraints.get(influenced_constraints.get(i));
+                    if (!visited_constraints.contains(tmp_constraint) && !ordered_list.contains(tmp_constraint))
+                    {
+                        stack.push(tmp_constraint);
+                        break;
+                    }
+                    else
+                    {
+                        stack.pop();
+                        visited_constraints.remove(constraint);
+                        ordered_list.add(0,constraint);
+                    }
                 }
             }
+
         }
 
         //Replace the constraints worklist by the ordered worklist
