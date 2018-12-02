@@ -150,10 +150,6 @@ public class WorklistAlgorithm {
             ArrayList<AnalysisDomainElement> result = c.getRightHandSide().evaluate(A);
 
             //Union the two arraylists if it already has a list.
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ef2a137ca7d9347549a59e6ba55852e3f179c76
             boolean isChanged = false;
             if (currentList != null){
                 for(AnalysisDomainElement el : result){
