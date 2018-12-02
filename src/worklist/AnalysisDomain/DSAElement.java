@@ -13,6 +13,12 @@ public class DSAElement extends AnalysisDomainElement {
     private Sign sign;
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+
+    @Override
     public boolean Equals(AnalysisDomainElement otherElement) {
         if (otherElement instanceof DSAElement){
            if (this.name.equals(((DSAElement) otherElement).name)

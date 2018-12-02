@@ -1,7 +1,6 @@
 package worklist;
 
-import com.company.Label;
-import worklist.AnalysisDomain.DSAElement;
+import Graph.Label;
 
 import java.util.ArrayList;
 import java.util.HashMap;

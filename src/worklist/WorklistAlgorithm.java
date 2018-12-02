@@ -1,14 +1,8 @@
 package worklist;
 
 
-import com.company.Variable;
-import worklist.Operators.Difference;
-import worklist.Operators.Operator;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class WorklistAlgorithm {
 

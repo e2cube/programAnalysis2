@@ -1,7 +1,5 @@
 package worklist;
 
-import com.company.Variable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
