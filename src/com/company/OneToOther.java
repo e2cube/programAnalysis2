@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 
 public class OneToOther {
@@ -9,7 +8,6 @@ public class OneToOther {
 
     private int counter;
     private Node previousNodeHelper;
-    private Node currentNode;
     private Edge lastEdge;
 
     public OneToOther(){
@@ -27,7 +25,7 @@ public class OneToOther {
 
     public void Convert(Statement statement){
         if(statement instanceof AssignementStatement){
-            Edge e = new Edge(new Label(((AssignementStatement) statement).getLeftHandSide().GetSmth()+((AssignementStatement) statement).getLeftHandSide()));
+            Edge e = new Edge((AssignementStatement) statement);
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
                 parentNode.addOutgoingEdge(e);
@@ -47,7 +45,7 @@ public class OneToOther {
             }
         }
         if(statement instanceof ReadStatement){
-            Edge e = new Edge(new Label(((ReadStatement) statement).getName()));
+            Edge e = new Edge((ReadStatement) statement);
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
                 parentNode.addOutgoingEdge(e);
@@ -67,7 +65,7 @@ public class OneToOther {
             }
         }
         if(statement instanceof WriteStatement){
-            Edge e = new Edge(new Label(((WriteStatement) statement).getName()));
+            Edge e = new Edge((WriteStatement) statement);
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
                 parentNode.addOutgoingEdge(e);
@@ -87,7 +85,7 @@ public class OneToOther {
             }
         }
         if(statement instanceof DeclarationStatement){
-            Edge e = new Edge(new Label(((DeclarationStatement) statement).getType()));
+            Edge e = new Edge((DeclarationStatement) statement);
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
                 parentNode.addOutgoingEdge(e);
@@ -107,7 +105,7 @@ public class OneToOther {
             }
         }
         if(statement instanceof IfElseStatement) {
-            Edge edgeIf = new Edge(new Label(((IfElseStatement) statement).getCondition().GetSmth()));
+            Edge edgeIf = new Edge(((IfElseStatement) statement).getCondition());
             Node parentIfElseNode = null;
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
@@ -131,7 +129,7 @@ public class OneToOther {
             // save last edge, connectionNode
             Node connectionNode = previousNodeHelper;
             //else
-            Edge edgeElse = new Edge(new Label("!("+((IfElseStatement) statement).getCondition().GetSmth()+")"));
+            Edge edgeElse = new Edge(new NotExpression(((IfElseStatement) statement).getCondition()));
             parentIfElseNode.addOutgoingEdge(edgeElse);
             edgeElse.AddStartNode(parentIfElseNode);
             Node n = createNode();
@@ -147,7 +145,7 @@ public class OneToOther {
             counter--;
         }
         if(statement instanceof IfStatement){
-            Edge edgeIf = new Edge(new Label(((IfStatement) statement).getCondition().GetSmth()));
+            Edge edgeIf = new Edge(((IfStatement) statement).getCondition());
             Node parentIfNode = null;
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();
@@ -168,7 +166,7 @@ public class OneToOther {
             }
             // body for if
             TreeToGraph(((IfStatement) statement).getBody());
-            Edge edgeElse = new Edge(new Label("!("+((IfStatement) statement).getCondition().GetSmth()+")"));
+            Edge edgeElse = new Edge(new NotExpression(((IfStatement) statement).getCondition()));
             parentIfNode.addOutgoingEdge(edgeElse);
             edgeElse.AddStartNode(parentIfNode);
             edgeElse.AddEndNode(previousNodeHelper);
@@ -176,8 +174,8 @@ public class OneToOther {
             lastEdge = edgeElse;
         }
         if(statement instanceof WhileStatement){
-            Edge edge = new Edge(new Label(((WhileStatement) statement).getCondition().GetSmth()));
-            Edge negEdge = new Edge(new Label("!("+((WhileStatement) statement).getCondition().GetSmth()+")"));
+            Edge edge = new Edge(((WhileStatement) statement).getCondition());
+            Edge negEdge = new Edge(new NotExpression(((WhileStatement) statement).getCondition()));
             Node parentWhileNode = null;
             if(graph.Nodes.size() == 0){
                 Node parentNode = createNode();

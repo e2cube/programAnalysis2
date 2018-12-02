@@ -1,28 +1,28 @@
 package com.company;
 
 public class WhileStatement extends Statement {
-    private Expression Condition;
-    private Sequence Body;
+    private Expression condition;
+    private Sequence body;
 
     public Expression getCondition() {
-        return Condition;
+        return condition;
     }
 
     public void setCondition(Expression condition) {
-        Condition = condition;
+        condition = condition;
     }
 
     public Sequence getBody() {
-        return Body;
+        return body;
     }
 
     public void setBody(Sequence body) {
-        Body = body;
+        body = body;
     }
 
     public WhileStatement(Expression condition, Sequence body) {
-        this.Condition = condition;
-        this.Body = body;
+        this.condition = condition;
+        this.body = body;
     }
 
 }

@@ -1,27 +1,37 @@
 package com.company;
 
 public class OperationExpression extends Expression {
-    private Expression LeftHandSide;
-    private Expression RightHandSide;
-    private String Operator;
+    private Expression leftHandSide;
+    private Expression rightHandSide;
+    private String operator;
 
-    public OperationExpression(Expression LeftHandSide, Expression RightHandSide, String Operator) {
-        this.LeftHandSide = LeftHandSide;
-        this.RightHandSide = RightHandSide;
-        this.Operator = Operator;
+    public Expression getLeftHandSide() {
+        return leftHandSide;
     }
 
-    public Expression getLefthandSide() {
-
-        return this.LeftHandSide;
+    public void setLeftHandSide(Expression leftHandSide) {
+        this.leftHandSide = leftHandSide;
     }
 
-    public Expression GetRighthandSide() {
-        return this.RightHandSide;
+    public Expression getRightHandSide() {
+        return rightHandSide;
     }
 
-    public String GetOperator() {
-        return this.Operator;
+    public void setRightHandSide(Expression rightHandSide) {
+        this.rightHandSide = rightHandSide;
     }
 
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public OperationExpression(Expression leftHandSide, Expression rightHandSide, String operator) {
+        this.leftHandSide = leftHandSide;
+        this.rightHandSide = rightHandSide;
+        this.operator = operator;
+    }
 }
