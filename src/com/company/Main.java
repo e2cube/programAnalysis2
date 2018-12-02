@@ -5,21 +5,26 @@ import com.sun.org.apache.xpath.internal.WhitespaceStrippingElementMatcher;
 public class Main {
     public static void main(String[] args) {
 
-        Node a = new Node("test");
-        a.addIncomingEdge(new Edge(new Label("test1")));
-        a.addIncomingEdge(new Edge(new Label("test2")));
 
         Sequence ab = new Sequence();
-        ab.addToSequence(new DeclarationStatement("int index"));
-        ab.addToSequence(new DeclarationStatement("int[10] array"));
+
+        SimpleVariable index = new SimpleVariable("index");
+        SimpleVariable array = new SimpleVariable("array", 10);
+
+        ab.addToSequence(new DeclarationStatement("int", index));
+        ab.addToSequence(new DeclarationStatement("int", array));
         Sequence WhileBody = new Sequence();
         Sequence IFElseIfPart = new Sequence();
         Sequence IfElseELsePart = new Sequence();
-        IFElseIfPart.addToSequence(new AssignementStatement(new Expression("array[index] :="), "2"));
-        IfElseELsePart.addToSequence(new AssignementStatement(new Expression("array[index] :="), "1"));
-        WhileBody.addToSequence(new IfElseStatement(new Expression("index > 5"), IFElseIfPart, IfElseELsePart));
-        WhileBody.addToSequence(new AssignementStatement(new Expression("index :="), "index+1"));
-        ab.addToSequence(new WhileStatement(new Expression("index <= 10"), WhileBody));
+
+        ArrayAtVariableIndexVariable ifPart = new ArrayAtVariableIndexVariable(array, index);
+
+        IFElseIfPart.addToSequence(new AssignementStatement(ifPart, new Constant(2)));
+        IfElseELsePart.addToSequence(new AssignementStatement(ifPart, new Constant(1)));
+        WhileBody.addToSequence(new IfElseStatement(new OperationExpression(index,new Constant(5), ">"), IFElseIfPart, IfElseELsePart));
+
+        WhileBody.addToSequence(new AssignementStatement(index, new OperationExpression(index, new Constant(1), "+")));
+        ab.addToSequence(new WhileStatement(new OperationExpression(index, new Constant(10), "10"), WhileBody));
 
 
         OneToOther aaa = new OneToOther();

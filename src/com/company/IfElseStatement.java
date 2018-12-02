@@ -1,34 +1,34 @@
 package com.company;
 
 public class IfElseStatement extends Statement {
-    private Expression Condition;
-    private Sequence bodyif;
+    private Expression condition;
+    private Sequence bodyIf;
     private Sequence bodyElse;
 
     public IfElseStatement(Expression condition, Sequence bodyIf, Sequence bodyElse) {
-        this.Condition = condition;
-        this.bodyif = bodyIf;
+        this.condition = condition;
+        this.bodyIf = bodyIf;
         this.bodyElse = bodyElse;
     }
 
     public Sequence getBodyIf(){
-        return this.bodyif;
+        return this.bodyIf;
     }
 
     public Expression getCondition() {
-        return Condition;
+        return condition;
     }
 
     public void setCondition(Expression condition) {
-        Condition = condition;
+        condition = condition;
     }
 
     public Sequence getBodyif() {
-        return bodyif;
+        return bodyIf;
     }
 
     public void setBodyif(Sequence bodyif) {
-        this.bodyif = bodyif;
+        this.bodyIf = bodyif;
     }
 
     public Sequence getBodyElse() {

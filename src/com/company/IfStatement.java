@@ -1,16 +1,16 @@
 package com.company;
 
 public class IfStatement extends Statement {
-    private Expression Condition;
+    private Expression condition;
     private Sequence body;
 
     public IfStatement(Expression condition, Sequence body) {
-        this.Condition = condition;
+        this.condition = condition;
         this.body = body;
     }
 
     public Expression getCondition() {
-        return Condition;
+        return condition;
     }
     public Sequence getBody(){
         return body;

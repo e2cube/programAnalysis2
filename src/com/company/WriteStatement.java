@@ -1,17 +1,17 @@
 package com.company;
 
 public class WriteStatement extends Statement {
-    private String Name;
+    private Expression variable;
 
-    public WriteStatement(String name) {
-        this.Name = name;
+    public WriteStatement(Expression variable) {
+        this.variable = variable;
     }
 
-    public String getName() {
-        return this.Name;
+    public Expression getVariable() {
+        return variable;
     }
 
-    public void SetName(String name) {
-        this.Name = name;
+    public void setVariable(Expression variable) {
+        this.variable = variable;
     }
 }

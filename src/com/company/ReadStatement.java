@@ -1,17 +1,17 @@
 package com.company;
 
 public class ReadStatement extends Statement {
-    private String Name;
+    private Variable variable;
 
-    public ReadStatement(String name) {
-        this.Name = name;
+    public Variable getVariable() {
+        return variable;
     }
 
-    public String getName() {
-        return this.Name;
+    public void setVariable(Variable variable) {
+        this.variable = variable;
     }
 
-    public void SetName(String name) {
-        this.Name = name;
+    public ReadStatement(Variable variable) {
+        this.variable = variable;
     }
 }

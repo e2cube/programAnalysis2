@@ -1,5 +1,5 @@
 package com.company;
 
-public class Statement {
+public abstract class Statement extends Label {
 
 }
