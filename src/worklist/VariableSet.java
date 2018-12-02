@@ -35,4 +35,5 @@ public class VariableSet extends TrashSet {
     public VariableSet(){
 
     }
+
 }

@@ -41,4 +41,12 @@ public class Node {
     public void addIncomingEdges(ArrayList<Edge> edges) {
         this.incomingEdges = edges;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Node){
+            return this.name.equals(((Node) obj).getName());
+        }
+        return false;
+    }
 }

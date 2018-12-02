@@ -1,5 +1,8 @@
 package com.company;
 
+import worklist.Constraint;
+import worklist.TrashSet;
+
 public class IfElseStatement extends Statement {
     private Expression condition;
     private Sequence bodyIf;
@@ -37,5 +40,10 @@ public class IfElseStatement extends Statement {
 
     public void setBodyElse(Sequence bodyElse) {
         this.bodyElse = bodyElse;
+    }
+
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
     }
 }

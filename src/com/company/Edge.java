@@ -25,4 +25,13 @@ public class Edge {
     public Node GetStartNode() {
         return this.startNode;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Edge){
+            Edge otherEdge = (Edge) obj;
+            return (this.startNode.equals(otherEdge.GetStartNode()) && this.endNode.equals(otherEdge.GetEndNode()) && this.label.equals(otherEdge.label));
+        }
+        return false;
+    }
 }

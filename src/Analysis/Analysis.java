@@ -5,6 +5,7 @@ import com.company.OneToOther;
 import com.company.Sequence;
 import worklist.AnalysisDomainElement;
 import worklist.Constraint;
+import worklist.TrashSet;
 import worklist.WorklistAlgorithm;
 
 import java.util.ArrayList;
@@ -39,7 +40,10 @@ public class Analysis {
         switch (typeAnalysis)
         {
             case DANGEROUS: generated_constraints = analysis.DangerousVariablesAnalysis();
-
+                break;
+                //Need a way to transport TrashSet info to DetectionSignsAnalysis
+            case SIGNS: generated_constraints = analysis.DetectionSignsAnalysis(null);
+                break;
         }
 
         WorklistAlgorithm worklist_algorithm = new WorklistAlgorithm();
