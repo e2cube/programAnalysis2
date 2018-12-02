@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 
 public class OneToOther {
@@ -9,7 +8,6 @@ public class OneToOther {
 
     private int counter;
     private Node previousNodeHelper;
-    private Node currentNode;
     private Edge lastEdge;
 
     public OneToOther(){
