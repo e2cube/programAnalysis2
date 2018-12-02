@@ -27,7 +27,7 @@ public class Worklist {
             {
                 for (Constraint tmp_constraint : constraints)
                 {
-                    if (tmp_constraint.getLeftHandSide().getName() == vs.getName())
+                    if (tmp_constraint.getLeftHandSide().getName().equals(vs.getName()))
                     {
                         ArrayList<Integer> tmp_list = influences.get(tmp_constraint.getId());
                         if(tmp_list == null)
