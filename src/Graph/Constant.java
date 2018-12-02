@@ -41,4 +41,10 @@ public class Constant extends Expression {
     public Constraint GenerateConstraint(int id, ConstantSet previous_DV, String previous_node_name) {
         return null;
     }
+
+    //TODO
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

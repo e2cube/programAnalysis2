@@ -50,4 +50,9 @@ public class NotExpression extends Expression {
 
         return constraint;
     }
+
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

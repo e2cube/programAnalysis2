@@ -7,6 +7,9 @@ import worklist.TrashSet;
 
 import java.util.ArrayList;
 
+import worklist.Constraint;
+import worklist.TrashSet;
+
 public class IfElseStatement extends Statement {
     private Expression condition;
     private Sequence bodyIf;
@@ -46,7 +49,7 @@ public class IfElseStatement extends Statement {
         this.bodyElse = bodyElse;
     }
 
-    @Override
+
     public TrashSet kill_DangerousVariables() {
         return null;
     }
@@ -58,6 +61,10 @@ public class IfElseStatement extends Statement {
 
     @Override
     public Constraint GenerateConstraint(int id, ConstantSet previous_DV, String previous_node_name) {
+        return null;
+    }
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
         return null;
     }
 }

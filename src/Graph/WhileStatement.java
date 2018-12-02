@@ -46,4 +46,9 @@ public class WhileStatement extends Statement {
     public Constraint GenerateConstraint(int id, ConstantSet previous_DV, String previous_node_name) {
         return null;
     }
+
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

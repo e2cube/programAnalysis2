@@ -44,4 +44,9 @@ public class WriteStatement extends Statement {
 
         return constraint;
     }
+
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

@@ -7,6 +7,7 @@ import worklist.TrashSet;
 
 public abstract class Label {
 
+    public abstract Constraint DetectionSignsF(TrashSet info, String nodeName);
     public abstract TrashSet kill_DangerousVariables();
     public abstract TrashSet gen_DangerousVariables(ConstantSet previous_DV);
 

@@ -46,4 +46,9 @@ public class ReadStatement extends Statement {
         return constraint;
     }
 
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
+
 }

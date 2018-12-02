@@ -69,5 +69,9 @@ public class SimpleVariable extends Variable {
         return names;
     }
 
-
+    //TODO
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

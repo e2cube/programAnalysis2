@@ -54,4 +54,10 @@ public class DeclarationStatement extends Statement {
 
         return constraint;
     }
+
+    //TODO
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }

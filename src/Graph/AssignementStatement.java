@@ -79,5 +79,19 @@ public class AssignementStatement extends Statement {
         return constraint;
     }
 
+    public Constraint DetectionSignsF(TrashSet info, String nodeName){
+
+        Constraint c = new Constraint();
+        //Create detection signs function with this statement using info.
+        Function f = new Function(this, info);
+        VariableSet vs = new VariableSet();
+
+        //A(nodeName)
+        vs.setName("A("+nodeName+")");
+
+        c.setLeftHandSide(vs);
+        c.setRightHandSide(f);
+        return c;
+    }
 
 }

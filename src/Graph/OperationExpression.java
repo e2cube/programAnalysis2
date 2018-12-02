@@ -82,5 +82,9 @@ public class OperationExpression extends Expression {
         return names;
     }
 
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 
 }

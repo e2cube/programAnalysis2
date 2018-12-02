@@ -71,4 +71,8 @@ public class ArrayAtVariableIndexVariable extends Variable {
     }
 
 
+    @Override
+    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
+        return null;
+    }
 }
