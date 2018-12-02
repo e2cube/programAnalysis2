@@ -2,9 +2,6 @@ package worklist;
 
 public class Constraint {
 
-
-    private int id;
-
     private VariableSet leftHandSide;
 
     private TrashSet rightHandSide;
@@ -17,40 +14,5 @@ public class Constraint {
 
     public void setOverEstimation(boolean overEstimation) {
         this.overEstimation = overEstimation;
-    }
-
-    public Constraint(int id, VariableSet leftHandSide, TrashSet rightHandSide, boolean overEstimation) {
-        this.id = id;
-        this.leftHandSide = leftHandSide;
-        this.rightHandSide = rightHandSide;
-        this.overEstimation = overEstimation;
-    }
-
-    public Constraint(){
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public VariableSet getLeftHandSide() {
-        return leftHandSide;
-    }
-
-    public void setLeftHandSide(VariableSet leftHandSide) {
-        this.leftHandSide = leftHandSide;
-    }
-
-    public TrashSet getRightHandSide() {
-        return rightHandSide;
-    }
-
-    public void setRightHandSide(TrashSet rightHandSide) {
-        this.rightHandSide = rightHandSide;
     }
 }
