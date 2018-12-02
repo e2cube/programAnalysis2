@@ -1,8 +1,6 @@
 package Analysis;
 
-import com.company.Graph;
-import com.company.OneToOther;
-import com.company.Sequence;
+import Graph.*;
 import worklist.AnalysisDomainElement;
 import worklist.Constraint;
 import worklist.WorklistAlgorithm;
@@ -15,14 +13,14 @@ public class Analysis {
     public enum TypeAnalysis
     {
         DANGEROUS,
-        SIGNS;
+        SIGNS
     }
 
     public enum TypeWorklist
     {
         FIFO,
         LIFO,
-        REVERSE;
+        REVERSE
     }
 
     public void Analyse(Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)

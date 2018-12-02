@@ -1,7 +1,8 @@
 package Analysis;
 
 
-import com.company.*;
+
+import Graph.*;
 import worklist.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class AnalysisAlgorithm {
         //TODO
 
 
-        
+
         return generated_constraints;
     }
 }
