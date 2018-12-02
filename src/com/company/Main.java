@@ -219,7 +219,9 @@ public class Main {
 
 
         WorklistAlgorithm wa = new WorklistAlgorithm();
-        wa.fifo(given_constraints);
+        //wa.fifo(given_constraints);
+
+        wa.lifo(given_constraints);
     }
 
     public static void test_DetectVariableSets()
