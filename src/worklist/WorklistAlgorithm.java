@@ -1,6 +1,7 @@
 package worklist;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -118,18 +119,27 @@ public class WorklistAlgorithm {
 
         //Initialize objects
         Worklist pending_worklist = new Worklist(givenConstraints);
-        HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
+        HashMap<Integer, ArrayList<Integer>> influences = pending_worklist.CreateInfluence();
 
         Worklist current_worklist = new Worklist(givenConstraints);
         current_worklist.getConstraints().clear(); //We want to start with an empty current worklist
+
+        ArrayList<Constraint> reverse_order = new ArrayList<>();
+
+        reverse_order.addAll(pending_worklist.ReversePostOrder(influences));
 
         //While the pending and current worklists are not empty at the same time
         while (!(current_worklist.getConstraints().isEmpty() && pending_worklist.getConstraints().isEmpty())){
 
             if (current_worklist.getConstraints().isEmpty())
             {
-                influences=pending_worklist.CreateInfluence();
-                current_worklist.getConstraints().addAll(pending_worklist.ReversePostOrder(influences));
+                for (Constraint c : reverse_order)
+                {
+                    if (pending_worklist.getConstraints().contains(c))
+                    {
+                        current_worklist.getConstraints().add(c);
+                    }
+                }
                 pending_worklist.getConstraints().clear();
             }
 

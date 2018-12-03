@@ -53,9 +53,12 @@ public class Analysis {
 
         switch (typeWorklist)
         {
-            case FIFO : A_result = worklist_algorithm.fifo(generated_constraints);
-            case LIFO : A_result = worklist_algorithm.lifo(generated_constraints);
-            case REVERSE : A_result = worklist_algorithm.ReversePostOrderIteration(generated_constraints);
+            case FIFO: A_result = worklist_algorithm.fifo(generated_constraints);
+                break;
+            case LIFO: A_result = worklist_algorithm.lifo(generated_constraints);
+                break;
+            case REVERSE: A_result = worklist_algorithm.ReversePostOrderIteration(generated_constraints);
+                break;
         }
 
         //Then print the A_result
