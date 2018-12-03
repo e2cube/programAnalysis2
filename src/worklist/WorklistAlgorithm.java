@@ -29,14 +29,25 @@ public class WorklistAlgorithm {
             //ArrayList from evaluating the righthandside of the constraint
             ArrayList<AnalysisDomainElement> result = c.getRightHandSide().evaluate(A);
 
+
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
@@ -56,8 +67,8 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
-        return null;
+        //System.out.println(A);
+        return A;
     }
 
     public HashMap<String, ArrayList<AnalysisDomainElement>> lifo(ArrayList<Constraint> givenConstraints) {
@@ -82,12 +93,22 @@ public class WorklistAlgorithm {
 
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
@@ -107,8 +128,8 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
-        return null;
+        //System.out.println(A);
+        return A;
     }
 
     public HashMap<String, ArrayList<AnalysisDomainElement>> ReversePostOrderIteration(ArrayList<Constraint> givenConstraints)
@@ -142,8 +163,6 @@ public class WorklistAlgorithm {
                 }
                 pending_worklist.getConstraints().clear();
             }
-            System.out.println("dd");
-
 
             Constraint c = current_worklist.getConstraints().get(0);
             current_worklist.getConstraints().remove(0);
@@ -178,6 +197,7 @@ public class WorklistAlgorithm {
                 A.put(c.getLeftHandSide().getName() , result);
                 isChanged = true;
             }
+
 
             if (isChanged){
                 //Get the ids that should be added

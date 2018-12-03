@@ -14,22 +14,19 @@ import static Analysis.Analysis.TypeWorklist.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World");
-        System.out.println("Goodbye, World");
-
+        System.out.println("Hello Hanne");
 
         Sequence AST = init_AST1();
         Analysis analysis = new Analysis();
-        analysis.Analyse(1, AST, DANGEROUS, REVERSE);
 
-
+        analysis.Analyse(1, AST, DANGEROUS, LIFO);
 
 
         //test_DetectVariableSets();
         //test_CreateInfluence();
         //test_ReverseIteration();
         //test_WorkList();
-        System.out.println("END");
+        System.out.println("Goodbye Hanne");
 
 
     }

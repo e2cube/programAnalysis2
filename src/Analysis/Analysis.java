@@ -7,6 +7,7 @@ import worklist.AnalysisDomain.DVElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class Analysis {
 
     public enum TypeAnalysis
@@ -24,12 +25,13 @@ public class Analysis {
 
     public void Analyse(int tested_tree_number, Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)
     {
+        long start_time = System.nanoTime();
+
+
         OneToOther translation_object = new OneToOther();
         translation_object.TreeToGraph(abstract_syntax_tree);
 
         Graph generated_graph = translation_object.graph;
-
-
 
         AnalysisAlgorithm analysis_algo = new AnalysisAlgorithm(generated_graph);
 
@@ -69,17 +71,21 @@ public class Analysis {
                 break;
         }
 
+        long stop_time = System.nanoTime();
+
         //Then print the A_result
-        System.out.println("RESULT :");
+        System.out.println("RESULT : ");
         for (String name: A_result.keySet()){
             ArrayList<AnalysisDomainElement> value = A_result.get(name);
 
             System.out.println(name +" : " );
             for (AnalysisDomainElement element : value)
             {
-                System.out.println(element.getName());
+                System.out.println("\t"+element.getName());
             }
-            System.out.println();
+
         }
+        long difference = stop_time-start_time;
+        System.out.println("It took "+difference+" ns");
     }
 }

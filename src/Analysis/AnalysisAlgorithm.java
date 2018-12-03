@@ -29,7 +29,7 @@ public class AnalysisAlgorithm {
         Node startNode = program_graph.Nodes.get(0);
         VariableSet first_variable = new VariableSet("A("+startNode.getName()+")");
         Constraint init_constraint = new Constraint(0, first_variable, info, true);
-        System.out.println(init_constraint.toString()); //----------------
+        //System.out.println(init_constraint.toString()); //----------------
         generated_constraints.add(init_constraint);
         frontier.addAll(startNode.getOutgoingEdges());
 
@@ -45,7 +45,7 @@ public class AnalysisAlgorithm {
 
                 VariableSet prevInfo = new VariableSet("A("+edge.GetStartNode().getName()+")");
                 Constraint c = edge.label.DangerousVariablesF(generated_constraints.size(), prevInfo, edge.GetEndNode().getName());
-                System.out.println(c.toString()); //--------------
+                //System.out.println(c.toString()); //--------------
                 generated_constraints.add(c);
 
                 frontier.addAll(edge.GetEndNode().getOutgoingEdges());
