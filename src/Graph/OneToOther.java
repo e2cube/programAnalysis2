@@ -208,6 +208,8 @@ public class OneToOther {
             nn.addIncomingEdge(negEdge);
             negEdge.AddStartNode(previousNodeHelper);
             negEdge.AddEndNode(nn);
+            //a
+            previousNodeHelper = nn;
         }
     }
 
