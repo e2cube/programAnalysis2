@@ -142,6 +142,7 @@ public class WorklistAlgorithm {
                 }
                 pending_worklist.getConstraints().clear();
             }
+            System.out.println("dd");
 
 
             Constraint c = current_worklist.getConstraints().get(0);

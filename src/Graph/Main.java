@@ -71,7 +71,7 @@ public class Main {
 
         Sequence Whilebody2 = new Sequence();
 
-        AssignementStatement zzy = new AssignementStatement(z1.getLeftHandSide(), new OperationExpression(z1.getLeftHandSide(), yx.getLeftHandSide(), "*"));
+        AssignementStatement zzy = new AssignementStatement(z1.getLeftHandSide(), new OperationExpression(z1.getLeftHandSide(), yx.getLeftHandSide(), "*" ));
         AssignementStatement yy1 = new AssignementStatement(yx.getLeftHandSide(), new OperationExpression(yx.getLeftHandSide(), new Constant(1), "-"));
         Whilebody2.addToSequence(zzy);
         Whilebody2.addToSequence(yy1);
