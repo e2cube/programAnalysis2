@@ -14,13 +14,11 @@ import static Analysis.Analysis.TypeWorklist.*;
 
 public class Main {
     public static void main(String[] args) {
-
-
         System.out.println("Hello, World");
         System.out.println("Goodbye, World");
 
 
-        Sequence AST = init_AST();
+        Sequence AST = init_AST1();
         Analysis analysis = new Analysis();
         analysis.Analyse(AST, DANGEROUS, REVERSE);
 
@@ -36,7 +34,7 @@ public class Main {
 
     }
 
-    public static Sequence init_AST()
+    public static Sequence init_AST1()
     {
         Sequence ab = new Sequence();
 
@@ -56,9 +54,31 @@ public class Main {
         WhileBody.addToSequence(new IfElseStatement(new OperationExpression(index,new Constant(5), ">"), IFElseIfPart, IfElseELsePart));
 
         WhileBody.addToSequence(new AssignementStatement(index, new OperationExpression(index, new Constant(1), "+")));
-        ab.addToSequence(new WhileStatement(new OperationExpression(index, new Constant(10), "10"), WhileBody));
+        ab.addToSequence(new WhileStatement(new OperationExpression(index, new Constant(10), ">"), WhileBody));
 
         return ab;
+    }
+
+    public static Sequence init_AST2()
+    {
+        Sequence ab2 = new Sequence();
+
+        AssignementStatement yx = new AssignementStatement(new SimpleVariable("y"), new SimpleVariable("x"));
+        AssignementStatement z1 = new AssignementStatement(new SimpleVariable("z"), new Constant(1));
+        ab2.addToSequence(yx);
+        ab2.addToSequence(z1);
+
+
+        Sequence Whilebody2 = new Sequence();
+
+        AssignementStatement zzy = new AssignementStatement(z1.getLeftHandSide(), new OperationExpression(z1.getLeftHandSide(), yx.getLeftHandSide(), "*"));
+        AssignementStatement yy1 = new AssignementStatement(yx.getLeftHandSide(), new OperationExpression(yx.getLeftHandSide(), new Constant(1), "-"));
+        Whilebody2.addToSequence(zzy);
+        Whilebody2.addToSequence(yy1);
+        ab2.addToSequence(new WhileStatement(new OperationExpression(yx.getLeftHandSide(),new Constant(0), ">"), Whilebody2));
+        ab2.addToSequence(new AssignementStatement(yx.getLeftHandSide(), new Constant(0)));
+
+        return  ab2;
     }
 
     public void test_WorklistAlgo()
