@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Difference extends Operator {
-    public ArrayList<AnalysisDomainElement> result(AnalysisDomainElement a, AnalysisDomainElement element){return null;}
+
 
     public Difference(TrashSet left, TrashSet right) {
         this.leftHandSide = left;
@@ -30,6 +30,8 @@ public class Difference extends Operator {
     }
         return result;
     }
+
+    public ArrayList<AnalysisDomainElement> result(AnalysisDomainElement a, AnalysisDomainElement element){return null;}
 
     public ConstantSet resolve() // TO IMPROVE (handle other cases than just constant sets
     {
