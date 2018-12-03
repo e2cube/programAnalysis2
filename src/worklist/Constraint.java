@@ -53,4 +53,11 @@ public class Constraint {
     public void setRightHandSide(TrashSet rightHandSide) {
         this.rightHandSide = rightHandSide;
     }
+
+    @Override
+    public String toString() {
+        String string_constraint;
+        string_constraint = "Constraint "+id+" : LHS "+leftHandSide+", RHS "+rightHandSide;
+        return string_constraint;
+    }
 }

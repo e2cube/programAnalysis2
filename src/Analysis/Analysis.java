@@ -28,6 +28,9 @@ public class Analysis {
         translation_object.TreeToGraph(abstract_syntax_tree);
 
         Graph generated_graph = translation_object.graph;
+
+
+
         AnalysisAlgorithm analysis_algo = new AnalysisAlgorithm(generated_graph);
 
         ArrayList<Constraint> generated_constraints = new ArrayList<>();
@@ -56,5 +59,16 @@ public class Analysis {
         }
 
         //Then print the A_result
+        System.out.println("RESULT :");
+        for (String name: A_result.keySet()){
+            ArrayList<AnalysisDomainElement> value = A_result.get(name);
+
+            System.out.println(name +" : " );
+            for (AnalysisDomainElement element : value)
+            {
+                System.out.println(element.getName());
+            }
+            System.out.println();
+        }
     }
 }

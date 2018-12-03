@@ -27,12 +27,11 @@ public class AnalysisAlgorithm {
 
         //Initialize from the first node;
         Node startNode = program_graph.Nodes.get(0);
-        for (Edge edge : startNode.getOutgoingEdges()){
-            frontier.addAll(edge.GetEndNode().getOutgoingEdges());
-            Constraint c = edge.label.DangerousVariablesF(generated_constraints.size(),info,startNode.getName());
-            generated_constraints.add(c);
-            expandedEdges.add(edge);
-        }
+        VariableSet first_variable = new VariableSet("A("+startNode.getName()+")");
+        Constraint init_constraint = new Constraint(0, first_variable, info, true);
+        System.out.println(init_constraint.toString()); //----------------
+        generated_constraints.add(init_constraint);
+        frontier.addAll(startNode.getOutgoingEdges());
 
 
         while (!frontier.isEmpty()){
@@ -46,6 +45,7 @@ public class AnalysisAlgorithm {
 
                 VariableSet prevInfo = new VariableSet("A("+edge.GetStartNode().getName()+")");
                 Constraint c = edge.label.DangerousVariablesF(generated_constraints.size(), prevInfo, edge.GetEndNode().getName());
+                System.out.println(c.toString()); //--------------
                 generated_constraints.add(c);
 
                 frontier.addAll(edge.GetEndNode().getOutgoingEdges());

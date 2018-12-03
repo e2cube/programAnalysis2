@@ -1,5 +1,6 @@
 package Graph;
 
+import Analysis.Analysis;
 import worklist.*;
 import worklist.AnalysisDomain.DSElement;
 import worklist.Operators.Difference;
@@ -8,10 +9,35 @@ import worklist.Operators.Union;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static Analysis.Analysis.TypeAnalysis.*;
+import static Analysis.Analysis.TypeWorklist.*;
+
 public class Main {
     public static void main(String[] args) {
 
 
+        System.out.println("Hello, World");
+        System.out.println("Goodbye, World");
+
+
+        Sequence AST = init_AST();
+        Analysis analysis = new Analysis();
+        analysis.Analyse(AST, DANGEROUS, REVERSE);
+
+
+
+
+        //test_DetectVariableSets();
+        //test_CreateInfluence();
+        //test_ReverseIteration();
+        //test_WorkList();
+        System.out.println("END");
+
+
+    }
+
+    public static Sequence init_AST()
+    {
         Sequence ab = new Sequence();
 
         SimpleVariable index = new SimpleVariable("index");
@@ -32,15 +58,11 @@ public class Main {
         WhileBody.addToSequence(new AssignementStatement(index, new OperationExpression(index, new Constant(1), "+")));
         ab.addToSequence(new WhileStatement(new OperationExpression(index, new Constant(10), "10"), WhileBody));
 
+        return ab;
+    }
 
-        OneToOther aaa = new OneToOther();
-        aaa.TreeToGraph(ab);
-        aaa.toString();
-
-        System.out.println("Hello, World");
-        System.out.println("Goodbye, World");
-
-
+    public void test_WorklistAlgo()
+    {
         //Testing the worklist algorithm.
         DSElement ade = new DSElement("{+,-,0}");
         DSElement ade2 = new DSElement("{0,+,-}");
@@ -76,15 +98,6 @@ public class Main {
         {
             System.out.println(((DSElement) tmp_a).getName());
         }
-
-
-        //test_DetectVariableSets();
-        //test_CreateInfluence();
-        test_ReverseIteration();
-        test_WorkList();
-        System.out.println("END");
-
-
     }
 
     public static void test_ReverseIteration()

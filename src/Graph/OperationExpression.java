@@ -76,14 +76,16 @@ public class OperationExpression extends Expression {
 
     @Override
     public ArrayList<String> DetectVariableNames() {
-        ArrayList<String> names = new ArrayList<>();
-        names.addAll(leftHandSide.DetectVariableNames());
+        ArrayList<String> names = leftHandSide.DetectVariableNames();
         ArrayList<String> tmp = rightHandSide.DetectVariableNames();
-        for (String s : tmp)
+        if (tmp!=null && !tmp.isEmpty())
         {
-            if (!names.contains(s))
+            for (String s : tmp)
             {
-                names.add(s);
+                if (!names.contains(s))
+                {
+                    names.add(s);
+                }
             }
         }
 
