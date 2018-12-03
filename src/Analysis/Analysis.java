@@ -1,10 +1,8 @@
 package Analysis;
 
 import Graph.*;
-import worklist.AnalysisDomainElement;
-import worklist.Constraint;
-import worklist.TrashSet;
-import worklist.WorklistAlgorithm;
+import worklist.*;
+import worklist.AnalysisDomain.DVElement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,17 +28,20 @@ public class Analysis {
         translation_object.TreeToGraph(abstract_syntax_tree);
 
         Graph generated_graph = translation_object.graph;
-        AnalysisAlgorithm analysis = new AnalysisAlgorithm(generated_graph);
+        AnalysisAlgorithm analysis_algo = new AnalysisAlgorithm(generated_graph);
 
         ArrayList<Constraint> generated_constraints = new ArrayList<>();
-
+        ArrayList<AnalysisDomainElement> initial_info = new ArrayList<>();
 
         switch (typeAnalysis)
         {
-            case DANGEROUS: generated_constraints = analysis.DangerousVariablesAnalysis();
+            case DANGEROUS:
+                //HARD CODED INITIAL DANGEROUS VARIABLES !
+                initial_info.add(new DVElement("index"));
+                generated_constraints = analysis_algo.DangerousVariablesAnalysis(new ConstantSet(initial_info));
                 break;
                 //Need a way to transport TrashSet info to DetectionSignsAnalysis
-            case SIGNS: generated_constraints = analysis.DetectionSignsAnalysis(null);
+            case SIGNS: generated_constraints = analysis_algo.DetectionSignsAnalysis(null);
                 break;
         }
 

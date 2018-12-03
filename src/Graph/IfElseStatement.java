@@ -1,14 +1,9 @@
 package Graph;
 
+import worklist.*;
 import worklist.AnalysisDomain.DVElement;
-import worklist.ConstantSet;
-import worklist.Constraint;
-import worklist.TrashSet;
 
 import java.util.ArrayList;
-
-import worklist.Constraint;
-import worklist.TrashSet;
 
 public class IfElseStatement extends Statement {
     private Expression condition;
@@ -49,20 +44,26 @@ public class IfElseStatement extends Statement {
         this.bodyElse = bodyElse;
     }
 
-
-    public TrashSet kill_DangerousVariables() {
+    @Override
+    public ConstantSet kill_DangerousVariables() {
         return null;
     }
 
     @Override
-    public TrashSet gen_DangerousVariables(ConstantSet previous_DV) {
+    public ConstantSet gen_DangerousVariables(ConstantSet previous_DV) {
         return null;
     }
 
     @Override
-    public Constraint GenerateConstraint(int id, ConstantSet previous_DV, String previous_node_name) {
+    public ArrayList<AnalysisDomainElement> evaluate_Dangerous_Variables(ConstantSet previous_DV) {
         return null;
     }
+
+    @Override
+    public Constraint DangerousVariablesF(int id, TrashSet info, String next_node_name) {
+        return null;
+    }
+
     @Override
     public Constraint DetectionSignsF(TrashSet info, String nodeName) {
         return null;

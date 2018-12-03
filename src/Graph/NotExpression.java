@@ -1,12 +1,9 @@
 package Graph;
 
+import worklist.*;
 import worklist.AnalysisDomain.DVElement;
-import worklist.ConstantSet;
-import worklist.Constraint;
 import worklist.Operators.Difference;
 import worklist.Operators.Union;
-import worklist.TrashSet;
-import worklist.VariableSet;
 
 import java.util.ArrayList;
 
@@ -32,21 +29,43 @@ public class NotExpression extends Expression {
     }
 
     @Override
-    public TrashSet kill_DangerousVariables() {
+    public ConstantSet kill_DangerousVariables() {
         return negExpression.kill_DangerousVariables();
     }
 
     @Override
-    public TrashSet gen_DangerousVariables(ConstantSet previous_DV) {
+    public ConstantSet gen_DangerousVariables(ConstantSet previous_DV) {
         return negExpression.gen_DangerousVariables(previous_DV);
     }
 
+    /*
     @Override
-    public Constraint GenerateConstraint(int id, ConstantSet previous_DV, String next_node_name) {
+    public Constraint DangerousVariablesGenerateConstraint(int id, TrashSet previous_DV, String next_node_name) {
         Difference difference = new Difference(previous_DV, this.kill_DangerousVariables());
         Union union = new Union(difference, this.gen_DangerousVariables(previous_DV));
 
         Constraint constraint = new Constraint(id, new VariableSet("A("+next_node_name+")"), union, true);
+
+        return constraint;
+    }*/
+
+    @Override
+    public ArrayList<AnalysisDomainElement> evaluate_Dangerous_Variables(ConstantSet previous_DV) {
+        Difference difference = new Difference(previous_DV, this.kill_DangerousVariables());
+        Union union = new Union(difference.resolve(), this.gen_DangerousVariables(previous_DV));
+
+        ConstantSet result = union.resolve();
+
+        return result.getElements();
+    }
+
+    @Override
+    public Constraint DangerousVariablesF(int id, TrashSet info, String next_node_name) {
+
+        //Create detection signs function with this statement using info.
+        FunctionDangerousVariables functionDangerousVariables = new FunctionDangerousVariables(this, info);
+        VariableSet variableSet = new VariableSet("A("+next_node_name+")");
+        Constraint constraint = new Constraint(id, variableSet,functionDangerousVariables, true);
 
         return constraint;
     }

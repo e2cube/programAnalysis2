@@ -5,11 +5,11 @@ import Graph.Label;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Function extends TrashSet {
+public class FunctionDetectionSigns extends TrashSet {
     private Label label;
     private TrashSet arguments;
 
-    public Function(Label label, TrashSet arguments) {
+    public FunctionDetectionSigns(Label label, TrashSet arguments) {
         this.label = label;
         this.arguments = arguments;
     }
@@ -36,6 +36,7 @@ public class Function extends TrashSet {
     public void setArguments(TrashSet arguments) {
         this.arguments = arguments;
     }
+
 }
 
 
