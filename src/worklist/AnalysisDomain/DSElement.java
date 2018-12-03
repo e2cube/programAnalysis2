@@ -19,7 +19,7 @@ public class DSElement extends AnalysisDomainElement {
     }
 
     @Override
-    public boolean Equals(AnalysisDomainElement otherElement) {
+    public boolean Equals(Object otherElement) {
         if (otherElement instanceof DSElement){
             if (this.name.equals(((DSElement) otherElement).name)) {
                 return true;

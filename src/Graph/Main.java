@@ -20,7 +20,7 @@ public class Main {
 
         Sequence AST = init_AST1();
         Analysis analysis = new Analysis();
-        analysis.Analyse(AST, DANGEROUS, REVERSE);
+        analysis.Analyse(1, AST, DANGEROUS, REVERSE);
 
 
 

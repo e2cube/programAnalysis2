@@ -1,7 +1,6 @@
 package Graph;
 
 import worklist.*;
-import worklist.AnalysisDomain.DVElement;
 import worklist.Operators.Difference;
 import worklist.Operators.Union;
 
@@ -36,11 +35,6 @@ public class Constant extends Expression {
     public ConstantSet gen_DangerousVariables(ConstantSet previous_DV) {
         return new ConstantSet(new ArrayList<>());
     }
-/*
-    @Override
-    public Constraint DangerousVariablesGenerateConstraint(int id, TrashSet previous_DV, String previous_node_name) {
-        return null;
-    }*/
 
     @Override
     public ArrayList<AnalysisDomainElement> evaluate_Dangerous_Variables(ConstantSet previous_DV) {

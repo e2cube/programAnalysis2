@@ -18,7 +18,6 @@ public class FunctionDangerousVariables extends TrashSet {
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
         ArrayList<AnalysisDomainElement> evaluated_argument = argument.evaluate(A);
 
-        System.out.println(evaluated_argument);
         return label.evaluate_Dangerous_Variables(new ConstantSet(evaluated_argument));
     }
 

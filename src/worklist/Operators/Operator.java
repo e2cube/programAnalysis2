@@ -30,6 +30,7 @@ public class Operator extends TrashSet {
 
     @Override
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
+        System.out.println("Called evaluate on op");
         return null;
     }
 

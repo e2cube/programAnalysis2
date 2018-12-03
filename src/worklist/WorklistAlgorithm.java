@@ -155,12 +155,22 @@ public class WorklistAlgorithm {
 
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
@@ -183,7 +193,7 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
+        //System.out.println(A);
         return A;
     }
 }

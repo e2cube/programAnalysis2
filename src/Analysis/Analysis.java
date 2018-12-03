@@ -22,7 +22,7 @@ public class Analysis {
         REVERSE
     }
 
-    public void Analyse(Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)
+    public void Analyse(int tested_tree_number, Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)
     {
         OneToOther translation_object = new OneToOther();
         translation_object.TreeToGraph(abstract_syntax_tree);
@@ -40,7 +40,15 @@ public class Analysis {
         {
             case DANGEROUS:
                 //HARD CODED INITIAL DANGEROUS VARIABLES !
-                initial_info.add(new DVElement("index"));
+                if (tested_tree_number==1)
+                {
+                    initial_info.add(new DVElement("index"));
+                    initial_info.add(new DVElement("array"));
+                }
+                else if (tested_tree_number==2)
+                {
+                    initial_info.add(new DVElement("x"));
+                }
                 generated_constraints = analysis_algo.DangerousVariablesAnalysis(new ConstantSet(initial_info));
                 break;
                 //Need a way to transport TrashSet info to DetectionSignsAnalysis

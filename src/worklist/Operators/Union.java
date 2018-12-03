@@ -33,15 +33,26 @@ public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<Analy
     public ConstantSet resolve() // TO IMPROVE (handle other cases than just constant sets
     {
         ArrayList<AnalysisDomainElement> result = new ArrayList<>();
+
+        boolean contained=false;
+
         if (leftHandSide instanceof ConstantSet && rightHandSide instanceof ConstantSet)
         {
             result.addAll(((ConstantSet)leftHandSide).getElements());
             for (AnalysisDomainElement element : ((ConstantSet)rightHandSide).getElements())
             {
-                if (!result.contains(element))
+                for (AnalysisDomainElement to_add : ((ConstantSet)leftHandSide).getElements())
+                {
+                    if (element.Equals(to_add))
+                    {
+                        contained=true;
+                    }
+                }
+                if (!contained)
                 {
                     result.add(element);
                 }
+                contained=false;
             }
             return  new ConstantSet(result);
         }
