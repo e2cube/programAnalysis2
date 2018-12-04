@@ -30,7 +30,8 @@ public class Edge {
     public boolean equals(Object obj){
         if (obj instanceof Edge){
             Edge otherEdge = (Edge) obj;
-            return (this.startNode.equals(otherEdge.GetStartNode()) && this.endNode.equals(otherEdge.GetEndNode()) && this.label.equals(otherEdge.label));
+            //&& this.label.equals(otherEdge.label) should be added to the return
+            return (this.startNode.equals(otherEdge.GetStartNode()) && this.endNode.equals(otherEdge.GetEndNode()));
         }
         return false;
     }

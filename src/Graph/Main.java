@@ -1,5 +1,6 @@
 package Graph;
 
+import Analysis.Analysis;
 import worklist.*;
 import worklist.AnalysisDomain.DSElement;
 import worklist.Operators.Difference;
@@ -37,6 +38,7 @@ public class Main {
         aaa.TreeToGraph(ab);
         aaa.toString();
 
+        Analysis.Analyse(ab, Analysis.TypeAnalysis.SIGNS, Analysis.TypeWorklist.FIFO);
         System.out.println("Hello, World");
         System.out.println("Goodbye, World");
 

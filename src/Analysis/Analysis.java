@@ -2,6 +2,7 @@ package Analysis;
 
 import Graph.*;
 import worklist.*;
+import worklist.AnalysisDomain.DSAElement;
 import worklist.AnalysisDomain.DVElement;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Analysis {
         REVERSE
     }
 
-    public void Analyse(Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)
+    public static void Analyse(Sequence abstract_syntax_tree, TypeAnalysis typeAnalysis, TypeWorklist typeWorklist)
     {
         OneToOther translation_object = new OneToOther();
         translation_object.TreeToGraph(abstract_syntax_tree);
@@ -41,7 +42,7 @@ public class Analysis {
                 generated_constraints = analysis_algo.DangerousVariablesAnalysis(new ConstantSet(initial_info));
                 break;
                 //Need a way to transport TrashSet info to DetectionSignsAnalysis
-            case SIGNS: generated_constraints = analysis_algo.DetectionSignsAnalysis(null);
+            case SIGNS: generated_constraints = analysis_algo.DetectionSignsAnalysis(new ConstantSet(initial_info));
                 break;
         }
 

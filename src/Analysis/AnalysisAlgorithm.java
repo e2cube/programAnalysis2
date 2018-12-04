@@ -61,11 +61,19 @@ public class AnalysisAlgorithm {
         ArrayList<Edge> frontier = new ArrayList<>();
         ArrayList<Edge> expandedEdges = new ArrayList<>();
 
+
         //Initialize from the first node;
         Node startNode = program_graph.Nodes.get(0);
+
+
+        //Generate first constraint
+        Constraint q0 = new Constraint(0, new VariableSet("A("+startNode.getName()+")"), info, true);
+        generated_constraints.add(q0);
         for (Edge edge : startNode.getOutgoingEdges()){
             frontier.addAll(edge.GetEndNode().getOutgoingEdges());
-            Constraint c = edge.label.DetectionSignsF(info, startNode.getName());
+            Constraint c = edge.label.DetectionSignsF(info, edge.GetEndNode().getName());
+            //Currently sets the id to the size of the constraint array
+            c.setId(generated_constraints.size());
             generated_constraints.add(c);
             expandedEdges.add(edge);
         }
@@ -76,13 +84,14 @@ public class AnalysisAlgorithm {
             Edge edge = frontier.get(0);
             frontier.remove(0);
 
+
             if (!expandedEdges.contains(edge)){
                 expandedEdges.add(edge);
 
                 VariableSet prevInfo = new VariableSet("A("+edge.GetStartNode().getName()+")");
                 Constraint c = edge.label.DetectionSignsF(prevInfo, edge.GetEndNode().getName());
+                c.setId(generated_constraints.size());
                 generated_constraints.add(c);
-
                 frontier.addAll(edge.GetEndNode().getOutgoingEdges());
             }
         }
