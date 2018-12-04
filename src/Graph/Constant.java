@@ -46,8 +46,6 @@ public class Constant extends Expression {
         return result.getElements();
     }
 
-
-    //TODO
     @Override
     public Constraint DetectionSignsF(TrashSet info, String nodeName) {
         return null;

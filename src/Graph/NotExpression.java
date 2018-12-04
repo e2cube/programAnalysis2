@@ -61,7 +61,18 @@ public class NotExpression extends Expression {
     }
 
     @Override
-    public Constraint DetectionSignsF(TrashSet info, String nodeName) {
-        return null;
+    public Constraint DetectionSignsF(TrashSet info, String nodeName){
+
+        Constraint c = new Constraint();
+        //Create detection signs function with this statement using info.
+        FunctionDetectionSigns f = new FunctionDetectionSigns(this, info);
+        VariableSet vs = new VariableSet();
+
+        //A(nodeName)
+        vs.setName("A("+nodeName+")");
+
+        c.setLeftHandSide(vs);
+        c.setRightHandSide(f);
+        return c;
     }
 }

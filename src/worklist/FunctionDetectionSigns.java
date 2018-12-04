@@ -16,8 +16,8 @@ public class FunctionDetectionSigns extends TrashSet {
 
     @Override
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
-        ArrayList<AnalysisDomainElement> a = arguments.evaluate(A);
-
+        ArrayList<AnalysisDomainElement> evaluated_argument = arguments.evaluate(A);
+       // return label.evaluate_DSA(new ConstantSet(evaluated_argument));
         return null;
     }
 

@@ -68,6 +68,7 @@ public class Main {
     {
         Sequence ab2 = new Sequence();
 
+
         AssignementStatement yx = new AssignementStatement(new SimpleVariable("y"), new SimpleVariable("x"));
         AssignementStatement z1 = new AssignementStatement(new SimpleVariable("z"), new Constant(1));
         ab2.addToSequence(yx);

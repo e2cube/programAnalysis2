@@ -62,10 +62,8 @@ public class AssignementStatement extends Statement {
                         dangerous = true;
                         break;
                     }
-
                 }
             }
-
         }
         if(dangerous)
         {
@@ -95,7 +93,6 @@ public class AssignementStatement extends Statement {
 
         return constraint;
     }
-
 
     public Constraint DetectionSignsF(TrashSet info, String nodeName){
 

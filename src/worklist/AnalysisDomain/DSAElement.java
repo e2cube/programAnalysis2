@@ -17,6 +17,13 @@ public class DSAElement extends AnalysisDomainElement {
         return name;
     }
 
+    public DSAElement(String name, Sign sign) {
+        this.name = name;
+        this.sign = sign;
+    }
+
+    public DSAElement() {
+    }
 
     @Override
     public boolean Equals(Object otherElement) {
