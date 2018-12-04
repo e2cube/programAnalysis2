@@ -14,23 +14,31 @@ import static Analysis.Analysis.TypeWorklist.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello Hanne");
+        System.out.println("Hello");
 
         Sequence AST = init_AST1();
         Analysis analysis = new Analysis();
 
         analysis.Analyse(1, AST, DANGEROUS, LIFO);
+        /*You can change the type of analysis : DANGEROUS or SIGNS.
+          However, the detection of signs analysis is not complete yet.
+          You can also change the type of worklist : LIFO, FIFO, or REVERSE
+
+          When working with the AST from init_AST1, please set the tested_tree_number to 1
+          You can also analyse the second program example by initialising the AST with init_AST2.
+          You should then set the tested_tree_number to 2.
+          This is a way to choose a hard coded first set of information.
+          1 : {index}
+          2 : {x}
+        */
 
 
-        //test_DetectVariableSets();
-        //test_CreateInfluence();
-        //test_ReverseIteration();
-        //test_WorkList();
-        System.out.println("Goodbye Hanne");
+        System.out.println("Goodbye");
 
 
     }
 
+    //TWO INIT METHODS TO GET A HARD CODED AST
     public static Sequence init_AST1()
     {
         Sequence ab = new Sequence();
@@ -77,6 +85,8 @@ public class Main {
 
         return  ab2;
     }
+
+    //METHODS USED FOR TESTING SMALL PARTS OF OUR PROGRAM
 
     public void test_WorklistAlgo()
     {
