@@ -34,5 +34,8 @@ public class VariableSet extends TrashSet {
 
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }

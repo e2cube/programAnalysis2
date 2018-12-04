@@ -53,7 +53,7 @@ public class AssignementStatement extends Statement {
 
         for (AnalysisDomainElement element : previous_DV.getElements())
         {
-            if(element!=null)
+            if(element!=null && variables_in_rhs!= null && !variables_in_rhs.isEmpty())
             {
                 for (String vs_name : variables_in_rhs)
                 {

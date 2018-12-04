@@ -1,5 +1,7 @@
 package worklist;
 
+import Analysis.Analysis;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,4 +24,15 @@ public class ConstantSet extends TrashSet {
     public ArrayList<AnalysisDomainElement> evaluate(HashMap<String, ArrayList<AnalysisDomainElement>> A) {
         return elements;
     }
+
+    @Override
+    public String toString() {
+        String string="";
+        for (AnalysisDomainElement element : elements)
+        {
+            string = string + element.getName() + ",";
+        }
+        return string;
+    }
+
 }

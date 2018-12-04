@@ -1,5 +1,7 @@
 package worklist;
 
+import java.util.Objects;
+
 public class Constraint {
 
 
@@ -24,6 +26,19 @@ public class Constraint {
         this.leftHandSide = leftHandSide;
         this.rightHandSide = rightHandSide;
         this.overEstimation = overEstimation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Constraint that = (Constraint) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, leftHandSide, rightHandSide, overEstimation);
     }
 
     public Constraint(){
@@ -52,5 +67,12 @@ public class Constraint {
 
     public void setRightHandSide(TrashSet rightHandSide) {
         this.rightHandSide = rightHandSide;
+    }
+
+    @Override
+    public String toString() {
+        String string_constraint;
+        string_constraint = "Constraint "+id+" : LHS "+leftHandSide+", RHS "+rightHandSide;
+        return string_constraint;
     }
 }

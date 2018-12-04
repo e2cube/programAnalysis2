@@ -1,6 +1,7 @@
 package worklist;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,14 +29,25 @@ public class WorklistAlgorithm {
             //ArrayList from evaluating the righthandside of the constraint
             ArrayList<AnalysisDomainElement> result = c.getRightHandSide().evaluate(A);
 
+
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
@@ -55,8 +67,8 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
-        return null;
+        //System.out.println(A);
+        return A;
     }
 
     public HashMap<String, ArrayList<AnalysisDomainElement>> lifo(ArrayList<Constraint> givenConstraints) {
@@ -81,12 +93,22 @@ public class WorklistAlgorithm {
 
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
@@ -106,8 +128,8 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
-        return null;
+        //System.out.println(A);
+        return A;
     }
 
     public HashMap<String, ArrayList<AnalysisDomainElement>> ReversePostOrderIteration(ArrayList<Constraint> givenConstraints)
@@ -118,21 +140,29 @@ public class WorklistAlgorithm {
 
         //Initialize objects
         Worklist pending_worklist = new Worklist(givenConstraints);
-        HashMap<Integer, ArrayList<Integer>> influences = new HashMap<>();
+        HashMap<Integer, ArrayList<Integer>> influences = pending_worklist.CreateInfluence();
 
         Worklist current_worklist = new Worklist(givenConstraints);
         current_worklist.getConstraints().clear(); //We want to start with an empty current worklist
+
+        ArrayList<Constraint> reverse_order = new ArrayList<>();
+
+        reverse_order.addAll(pending_worklist.ReversePostOrder(influences));
 
         //While the pending and current worklists are not empty at the same time
         while (!(current_worklist.getConstraints().isEmpty() && pending_worklist.getConstraints().isEmpty())){
 
             if (current_worklist.getConstraints().isEmpty())
             {
-                influences=pending_worklist.CreateInfluence();
-                current_worklist.getConstraints().addAll(pending_worklist.ReversePostOrder(influences));
+                for (Constraint c : reverse_order)
+                {
+                    if (pending_worklist.getConstraints().contains(c))
+                    {
+                        current_worklist.getConstraints().add(c);
+                    }
+                }
                 pending_worklist.getConstraints().clear();
             }
-
 
             Constraint c = current_worklist.getConstraints().get(0);
             current_worklist.getConstraints().remove(0);
@@ -145,18 +175,29 @@ public class WorklistAlgorithm {
 
             //Union the two arraylists if it already has a list.
             boolean isChanged = false;
+            boolean contained = false;
             if (currentList != null){
-                for(AnalysisDomainElement el : result){
-                    if (!currentList.contains(el)){
-                        isChanged = true;
-                        currentList.add(el);
+                for(AnalysisDomainElement element : result){
+                    for (AnalysisDomainElement current_element : currentList)
+                    {
+                        if(element.Equals(current_element))
+                        {
+                            contained=true;
+                        }
                     }
+
+                    if (!contained){
+                        isChanged = true;
+                        currentList.add(element);
+                    }
+                    contained=false;
                 }
             }
             else {
                 A.put(c.getLeftHandSide().getName() , result);
                 isChanged = true;
             }
+
 
             if (isChanged){
                 //Get the ids that should be added
@@ -173,7 +214,7 @@ public class WorklistAlgorithm {
             }
         }
 
-        System.out.println(A);
+        //System.out.println(A);
         return A;
     }
 }

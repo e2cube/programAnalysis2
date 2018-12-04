@@ -26,7 +26,7 @@ public class DSAElement extends AnalysisDomainElement {
     }
 
     @Override
-    public boolean Equals(AnalysisDomainElement otherElement) {
+    public boolean Equals(Object otherElement) {
         if (otherElement instanceof DSAElement){
            if (this.name.equals(((DSAElement) otherElement).name)
            && this.sign == ((DSAElement) otherElement).sign){

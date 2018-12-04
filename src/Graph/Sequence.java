@@ -20,4 +20,6 @@ public class Sequence {
     public Statement getStatementAtPosition(int position){
         return statements.get(position);
     }
+
+
 }

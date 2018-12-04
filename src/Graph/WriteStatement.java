@@ -1,7 +1,6 @@
 package Graph;
 
 import worklist.*;
-import worklist.AnalysisDomain.DVElement;
 import worklist.Operators.Difference;
 import worklist.Operators.Union;
 
@@ -32,16 +31,6 @@ public class WriteStatement extends Statement {
         return new ConstantSet(new ArrayList<>());
     }
 
-    /*
-    @Override
-    public Constraint DangerousVariablesGenerateConstraint(int id, TrashSet previous_DV, String next_node_name) {
-        Difference difference = new Difference(previous_DV, this.kill_DangerousVariables());
-        Union union = new Union(difference, this.gen_DangerousVariables(previous_DV));
-
-        Constraint constraint = new Constraint(id, new VariableSet("A("+next_node_name+")"), union, true);
-
-        return constraint;
-    }*/
 
 
     @Override

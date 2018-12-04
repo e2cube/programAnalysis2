@@ -1,7 +1,6 @@
 package Graph;
 
 import worklist.*;
-import worklist.AnalysisDomain.DVElement;
 import worklist.Operators.Difference;
 import worklist.Operators.Union;
 
@@ -53,16 +52,7 @@ public class OperationExpression extends Expression {
         return new ConstantSet(new ArrayList<>());
     }
 
-    /*
-    @Override
-    public Constraint DangerousVariablesGenerateConstraint(int id, TrashSet previous_DV, String next_node_name) {
-        Difference difference = new Difference(previous_DV, this.kill_DangerousVariables());
-        Union union = new Union(difference, this.gen_DangerousVariables(previous_DV));
 
-        Constraint constraint = new Constraint(id, new VariableSet("A("+next_node_name+")"), union, true);
-
-        return constraint;
-    }*/
 
     @Override
     public ArrayList<AnalysisDomainElement> evaluate_Dangerous_Variables(ConstantSet previous_DV) {
@@ -76,14 +66,16 @@ public class OperationExpression extends Expression {
 
     @Override
     public ArrayList<String> DetectVariableNames() {
-        ArrayList<String> names = new ArrayList<>();
-        names.addAll(leftHandSide.DetectVariableNames());
+        ArrayList<String> names = leftHandSide.DetectVariableNames();
         ArrayList<String> tmp = rightHandSide.DetectVariableNames();
-        for (String s : tmp)
+        if (tmp!=null && !tmp.isEmpty())
         {
-            if (!names.contains(s))
+            for (String s : tmp)
             {
-                names.add(s);
+                if (!names.contains(s))
+                {
+                    names.add(s);
+                }
             }
         }
 

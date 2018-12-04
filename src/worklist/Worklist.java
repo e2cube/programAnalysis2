@@ -75,6 +75,8 @@ public class Worklist {
                 }
             }
 
+        } else if (trashSet instanceof FunctionDangerousVariables) {
+            detected.addAll(DetectVariableSets(((FunctionDangerousVariables) trashSet).getArgument()));
         }
 
         return detected;

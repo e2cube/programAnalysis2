@@ -37,6 +37,10 @@ public class FunctionDetectionSigns extends TrashSet {
         this.arguments = arguments;
     }
 
+    @Override
+    public String toString() {
+        return "Function Detection Signs";
+    }
 }
 
 

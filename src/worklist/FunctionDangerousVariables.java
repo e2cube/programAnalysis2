@@ -37,7 +37,10 @@ public class FunctionDangerousVariables extends TrashSet {
         this.argument = argument;
     }
 
-
+    @Override
+    public String toString() {
+        return "Function Dangerous Variables "+((VariableSet)argument).getName();
+    }
 }
 
 

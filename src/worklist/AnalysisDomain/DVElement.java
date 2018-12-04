@@ -1,6 +1,5 @@
 package worklist.AnalysisDomain;
 
-import Analysis.AnalysisAlgorithm;
 import worklist.AnalysisDomainElement;
 
 public class DVElement extends AnalysisDomainElement {
@@ -20,9 +19,9 @@ public class DVElement extends AnalysisDomainElement {
     }
 
     @Override
-    public boolean Equals(AnalysisDomainElement otherElement) {
+    public boolean Equals(Object otherElement) {
         if (otherElement instanceof DVElement){
-            if (this.name.equals(((DVElement) otherElement).name)) {
+            if (this.name.equals(((DVElement) otherElement).name) && (((DVElement) otherElement).name).equals(this.name)) {
                 return true;
             }
             else
